@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane prefHeight="130.0" prefWidth="300.0" styleClass="pop_up_blue_color" stylesheets="@../../css/mainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctor.controllers.DialogPopUpController">
+   <children>
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="120.0" prefWidth="290.0" styleClass="pop_up_white_color">
+         <children>
+            <JFXButton fx:id="closeDialog" layoutX="89.0" layoutY="77.0" onMouseClicked="#close_dialog" prefHeight="28.0" prefWidth="113.0" styleClass="id_window_button" text="Confirm" textFill="#00000098">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font></JFXButton>
+            <Label fx:id="message" alignment="CENTER" contentDisplay="TOP" layoutX="6.0" layoutY="31.0" prefHeight="22.0" prefWidth="280.0" styleClass="pop_up_message" text="Message to be displayed" textAlignment="CENTER">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</Pane>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+<AnchorPane fx:id="anchorPane" styleClass="blue_color" stylesheets="@../../css/mainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctor.controllers.AddPatientController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="500.0" styleClass="blue_color" />
+      <Pane layoutX="5.0" layoutY="5.0" prefHeight="590.0" prefWidth="490.0" styleClass="white_color">
+         <children>
+            <JFXButton fx:id="cancelOperation" layoutX="53.0" layoutY="538.0" onMouseClicked="#cancelOperation" prefHeight="29.0" prefWidth="178.0" styleClass="window_button" text="Cancel operation" />
+            <JFXButton fx:id="addSelectedPatients" layoutX="260.0" layoutY="538.0" onMouseClicked="#addPatients" prefHeight="29.0" prefWidth="178.0" styleClass="window_button" text="Add selected patients" />
+            <JFXTreeTableView fx:id="patientsTreeView" layoutX="15.0" layoutY="14.0" prefHeight="500.0" prefWidth="460.0" styleClass="add_patient_tree_view" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

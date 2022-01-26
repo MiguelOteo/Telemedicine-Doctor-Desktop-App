@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="menuWindow" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="1250.0" styleClass="blue_color" stylesheets="@../../css/mainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctor.controllers.DoctorMenuController">
+   <children>
+      <Pane prefHeight="730.0" prefWidth="1250.0" styleClass="blue_color">
+         <children>
+            <JFXButton fx:id="logOutButton" layoutX="14.0" layoutY="679.0" onMouseClicked="#logOut" prefHeight="37.0" prefWidth="100.0" styleClass="log_out_buttom" text="Log out" textFill="#ffffffb0" wrapText="true">
+               <font>
+                  <Font name="Ebrima" size="16.0" />
+               </font>
+            </JFXButton>
+            <Label layoutX="115.0" layoutY="33.0" text="Telelepsia" textFill="#ffffffcc">
+               <font>
+                  <Font name="Ebrima" size="25.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="28.0" layoutY="21.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../icons/logo.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="doctorAccount" alignment="TOP_LEFT" layoutY="130.0" onAction="#openDoctorAccount" prefHeight="44.0" prefWidth="280.0" styleClass="menu_button" text="       Update account" textFill="#ffffffb3">
+               <font>
+                  <Font name="Ebrima" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="40.0" fitWidth="50.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                     <image>
+                        <Image url="@../../icons/doctor.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton fx:id="doctorPatients" alignment="TOP_LEFT" layoutY="200.0" onAction="#openDoctorPatients" prefHeight="44.0" prefWidth="280.0" styleClass="menu_button" text="    Your patients" textFill="#ffffffb3">
+               <font>
+                  <Font name="Ebrima" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="50.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                     <image>
+                        <Image url="@../../icons/patients.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <Pane fx:id="menuMainPane" layoutX="280.0" layoutY="5.0" prefHeight="720.0" prefWidth="965.0" styleClass="white_color" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

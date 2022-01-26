@@ -1,0 +1,379 @@
+
+.white_color {
+	-fx-background-color: white;
+	-fx-background-radius: 20 20 20 20;
+}
+
+.blue_color {
+   -fx-background-color: linear-gradient(to bottom left, #00dba2, #002017);
+   -fx-background-radius: 25 25 25 25;
+}
+
+.starter_buttom {
+	-fx-background-color: linear-gradient(to bottom left, #00dba2, #002017);
+	-fx-font-weight: normal;
+	-fx-text-fill: white;
+	-fx-font-size: 20;
+	-fx-background-radius: 20
+}
+
+.starter_buttom:hover {
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 20;
+    -fx-text-fill: #00000080;
+    -fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+    -fx-border-width: 4;
+    -fx-border-radius: 20;
+}
+
+.starter_small_buttom {
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 14;
+    -fx-background-radius: 12;
+    -fx-text-fill: #00000080;
+    -fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+    -fx-border-width: 3;
+    -fx-border-radius: 12;
+}
+.starter_small_buttom:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-font-weight: normal;
+    -fx-font-size: 14;
+    -fx-text-fill: #00000080;
+    -fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+    -fx-border-width: 3;
+    -fx-border-radius: 12;
+}
+
+.window_button {
+	-fx-background-radius: 40;
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 11;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.window_button:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-font-weight: normal;
+    -fx-font-size: 11;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.log_out_buttom {
+	-fx-font-weight: normal;
+	-fx-font-size: 16;
+	-fx-text-fill: #ffffffb0;
+	-fx-font-family: "Ebrima";
+	-fx-background-radius: 25 25 25 25;
+	-fx-background-color: transparent;
+}
+
+.log_out_buttom:hover {
+	-fx-font-weight: normal;
+	-fx-font-size: 16;
+	-fx-text-fill: #ffffffb0;
+	-fx-font-family: "Ebrima";
+	-fx-background-radius: 25 25 25 25;
+	-fx-background-color: #ffffff0c;
+}
+
+.label_text {
+	-fx-font-weight: normal;
+    -fx-font-size: 16;
+    -fx-font-family: "Ebrima";
+}
+
+.label_text_bold {
+	-fx-font-weight: bold;
+    -fx-font-size: 16;
+    -fx-font-family: "Ebrima";
+}
+
+.label_text2 {
+	-fx-font-weight: normal;
+    -fx-font-size: 18;
+    -fx-font-family: "Ebrima";
+}
+
+.change_button {
+	-fx-background-radius: 40;
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 14;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.change_button:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-font-weight: normal;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+	-fx-font-size: 14;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.add_button {
+	-fx-background-radius: 40;
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 14;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.add_button:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-font-weight: normal;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+	-fx-font-size: 14;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.tree_view {
+	-fx-border-color: white;
+	-fx-border-width: 2;
+	-fx-background-color: white;
+    -fx-font-size: 14;
+    -fx-text-fill: #00000080;
+    -fx-border-radius: 20;
+}
+
+.tree_view .table-column {
+	-fx-text-fill: #00000080;
+	-fx-alignment:center;
+}
+
+.tree_table_button {
+	-fx-background-radius: 40;
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+	-fx-font-family: "Ebrima";
+    -fx-font-size: 12;
+    -fx-text-fill: #00000080;
+    -fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.tree_table_button:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-background-radius: 40;
+	-fx-font-weight: normal;
+	-fx-font-family: "Ebrima";
+    -fx-font-size: 12;
+    -fx-text-fill: #00000080;
+    -fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.white_color_id_field {
+	-fx-background-color: white;
+	-fx-background-radius: 35
+}
+
+.blue_color_id_field {
+   -fx-background-color: linear-gradient(to bottom left, #00dba2, #002017);
+   -fx-background-radius: 40
+}
+
+.id-text-field {
+	-fx-font-weight: normal;
+    -fx-font-size: 14;
+    -fx-text-fill: #00000080;
+    -fx-font-family: "Ebrima";
+}
+
+.id_window_button {
+	-fx-background-radius: 40;
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 12;
+    -fx-text-fill: #000000b0;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.id_window_button:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-font-weight: normal;
+    -fx-font-size: 12;
+    -fx-text-fill: #00000098;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.pop_up_message {
+	-fx-font-weight: normal;
+    -fx-font-size: 14;
+    -fx-text-fill: #00000080;
+    -fx-font-family: "Ebrima";
+}
+
+.pop_up_white_color {
+	-fx-background-color: white;
+	-fx-background-radius: 35
+}
+
+.pop_up_blue_color {
+   -fx-background-color: linear-gradient(to bottom left, #00dba2, #002017);
+   -fx-background-radius: 40
+}
+
+.close_conn_button {
+	-fx-background-radius: 40;
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 16;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.close_conn_button:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-font-weight: normal;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+	-fx-font-size: 16;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.add_patient_tree_view {
+	-fx-border-color: white;
+	-fx-border-width: 2;
+	-fx-background-color: white;
+    -fx-font-size: 12;
+    -fx-text-fill: #00000080;
+    -fx-border-radius: 20;
+}
+
+.add_patient_tree_view .table-column {
+	-fx-text-fill: #00000080;
+	-fx-alignment:center;
+}
+
+.change_graph_button {
+	-fx-background-radius: 40;
+	-fx-background-color: white;
+	-fx-font-weight: normal;
+    -fx-font-size: 14;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.change_graph_button:hover {
+	-fx-background-color: #d8d8d8;
+	-fx-font-weight: normal;
+    -fx-text-fill: #00000080;
+	-fx-border-width: 2;
+	-fx-font-size: 14;
+    -fx-border-radius: 40;
+	-fx-border-color: linear-gradient(to bottom left, #00dba2, #002017);
+}
+
+.hour_combo_box {
+	-fx-font-size: 10pt;
+	-fx-text-fill: #00000080;
+	-fx-font-weight: normal;
+    -fx-font-family: "Ebrima";
+}
+.hour_combo_box .list-view .list-cell {
+	-fx-font-size: 10pt;
+	-fx-text-fill: #00000080;
+	-fx-font-weight: normal;
+    -fx-font-family: "Ebrima";
+}
+
+.date-picker {
+	 -fx-background-color: d3d3d3; 
+     -fx-faint-focus-color: transparent;
+     -fx-control-inner-background: white;
+     -fx-focus-color: white;
+}
+
+.date-picker:focused{
+	 -fx-background-color: d3d3d3; 
+     -fx-faint-focus-color: transparent;
+     -fx-control-inner-background: white;
+     -fx-focus-color: white;
+}
+
+.date-picker .arrow-button {
+	-fx-background-color: d3d3d3;
+	-fx-background-radius: 0;
+}
+
+.date-picker .arrow-button:hover {
+	-fx-background-color: d3d3d3;
+}
+
+.date-picker .arrow-button .arrow {
+	-fx-background-color: white;
+}
+
+.date-picker .cell {
+	-fx-background-color: white;
+}
+
+.date-picker .cell:hover {
+	-fx-background-color: #d1d1d1;
+}
+
+.date-picker .cell:focused {
+	-fx-background-color: #d1d1d1;
+}
+
+.date-picker .selected {
+	-fx-background-color: #00A9CC;
+	-fx-text-fill: white;
+}
+
+.date-picker .selected:focused {
+	-fx-background-color: #00A9CC;
+	-fx-text-fill: white;
+}
+
+.date-picker-popup  {
+	-fx-border-color: transparent;
+}
+
+.date-picker-popup .month-year-pane {
+	-fx-background-color: d3d3d3;
+}
+
+.date-picker-popup .month-year-pane .label {
+	-fx-text-fill: #00000080;
+}
+
+.date-picker-popup .week-number-cell {
+	-fx-text-fill: #020024;
+}
+
+.date-picker-popup .spinner .button .left-arrow,
+.date-picker-popup .spinner .button .right-arrow {
+	-fx-background-color: white;
+}
