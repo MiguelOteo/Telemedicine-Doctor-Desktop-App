@@ -167,7 +167,7 @@ public class LogInController implements Initializable {
 		Thread threadObject = new Thread("AthentificatingUser") {
 			public void run() {
 				try {
-					HttpURLConnection connection = (HttpURLConnection) new URL(DoctorParams.BASE_URL + "/userLogin")
+					HttpURLConnection connection = (HttpURLConnection) new URL(DoctorParams.BASE_URL + "/doctorLogIn")
 							.openConnection();
 
 					connection.setRequestMethod("POST");

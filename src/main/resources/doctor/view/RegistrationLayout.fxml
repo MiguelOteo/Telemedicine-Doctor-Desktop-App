@@ -14,12 +14,12 @@
    <children>
       <Pane prefHeight="610.0" prefWidth="810.0" styleClass="blue_color">
          <children>
-            <ImageView fitHeight="165.0" fitWidth="166.0" layoutX="117.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+            <ImageView fitHeight="165.0" fitWidth="166.0" layoutX="117.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@../../icons/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="113.0" layoutY="372.0" text="TELELEPSIA" textFill="#ffffffd9">
+            <Label layoutX="113.0" layoutY="357.0" text="TELELEPSIA" textFill="#ffffffd9">
                <font>
                   <Font name="Ebrima" size="35.0" />
                </font>
@@ -46,12 +46,12 @@
                         <Font name="Ebrima" size="14.0" />
                      </font>
                   </JFXPasswordField>
-                  <JFXButton fx:id="registerButton" buttonType="RAISED" layoutX="90.0" layoutY="465.0" prefHeight="60.0" prefWidth="240.0" styleClass="starter_buttom" text="Create account">
+                  <JFXButton fx:id="registerButton" buttonType="RAISED" layoutX="90.0" layoutY="455.0" prefHeight="60.0" prefWidth="240.0" styleClass="starter_buttom" text="Create account">
                      <font>
                         <Font name="Ebrima Bold" size="20.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="goBackButton" layoutX="156.0" layoutY="550.0" onMouseClicked="#backToMenu" prefHeight="36.0" prefWidth="108.0" styleClass="starter_small_buttom" text="Go back" textFill="#4f90a5">
+                  <JFXButton fx:id="goBackButton" layoutX="156.0" layoutY="542.0" onMouseClicked="#backToMenu" prefHeight="36.0" prefWidth="108.0" styleClass="starter_small_buttom" text="Go back" textFill="#4f90a5">
                      <font>
                         <Font name="Ebrima" size="14.0" />
                      </font>
@@ -73,7 +73,7 @@
                   </JFXButton>
                </children>
             </Pane>
-            <Label layoutX="155.0" layoutY="415.0" text="HOSPITAL" textFill="#ffffffd9">
+            <Label layoutX="128.0" layoutY="400.0" text="HOSPITAL - APP" textFill="#ffffffd9">
                <font>
                   <Font name="Ebrima" size="20.0" />
                </font>

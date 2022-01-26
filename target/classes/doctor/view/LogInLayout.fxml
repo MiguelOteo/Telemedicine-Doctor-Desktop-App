@@ -14,17 +14,17 @@
    <children>
       <Pane prefHeight="610.0" prefWidth="810.0" styleClass="blue_color">
          <children>
-            <ImageView fitHeight="165.0" fitWidth="166.0" layoutX="117.0" layoutY="195.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+            <ImageView fitHeight="165.0" fitWidth="166.0" layoutX="117.0" layoutY="180.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                <image>
                   <Image url="@../../icons/logo.png" />
                </image>
             </ImageView>
-            <Label layoutX="113.0" layoutY="372.0" text="TELELEPSIA" textFill="#ffffffd9">
+            <Label layoutX="113.0" layoutY="357.0" text="TELELEPSIA" textFill="#ffffffd9">
                <font>
                   <Font name="Ebrima" size="35.0" />
                </font>
             </Label>
-            <Label layoutX="155.0" layoutY="415.0" text="HOSPITAL" textFill="#ffffffd9">
+            <Label layoutX="128.0" layoutY="400.0" text="HOSPITAL - APP" textFill="#ffffffd9">
                <font>
                   <Font name="Ebrima" size="20.0" />
                </font>
