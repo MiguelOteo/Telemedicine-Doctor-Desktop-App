@@ -75,7 +75,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 		Pane patientRecordsPane;	
 		try {
 			AccountObjectCommunication.setDatabaseId(patientId);
-			patientRecordsPane = FXMLLoader.load(getClass().getResource("/doctor/view/PatientRecordsLayout.fxml"));
+			patientRecordsPane = FXMLLoader.load(getClass().getResource(DoctorParams.PATIENT_RECORDS_VIEW));
 			mainPane.getChildren().removeAll();
 			mainPane.getChildren().setAll(patientRecordsPane);
 		} catch (IOException error) {
@@ -140,7 +140,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 	// Displays any error returned form the Rest API
 	private void openDialog(String message, boolean error) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/common/view/dialogPopUpLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
 			Parent root = (Parent) loader.load();
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);
@@ -157,7 +157,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 				if(!error) {
 					Pane doctorPatientsPane;
 					try {
-						doctorPatientsPane = FXMLLoader.load(getClass().getResource("/doctor/view/DoctorPatientsLayout.fxml"));
+						doctorPatientsPane = FXMLLoader.load(getClass().getResource(DoctorParams.DOCTOR_PATIENTS_VIEW));
 						mainPane.getChildren().removeAll();
 						mainPane.getChildren().setAll(doctorPatientsPane);
 					} catch (IOException exception) {

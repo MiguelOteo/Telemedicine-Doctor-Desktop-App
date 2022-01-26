@@ -102,7 +102,7 @@ public class LogInController implements Initializable {
 	// Replace the login pane with the registration one
 	@FXML
 	private void openRegistration(MouseEvent event) throws IOException {
-		Pane registrationPane = FXMLLoader.load(getClass().getResource("/doctor/view/RegistrationLayout.fxml"));
+		Pane registrationPane = FXMLLoader.load(getClass().getResource(DoctorParams.REGISTRATION_VIEW));
 		anchorPane.getChildren().remove(logInPane);
 		anchorPane.getChildren().setAll(registrationPane);
 	}
@@ -141,7 +141,7 @@ public class LogInController implements Initializable {
 
 	private void openDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/doctor/view/DialogPopUpLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
 			Parent root = (Parent) loader.load();
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);

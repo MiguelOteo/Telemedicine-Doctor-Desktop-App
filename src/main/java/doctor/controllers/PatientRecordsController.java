@@ -174,7 +174,7 @@ public class PatientRecordsController implements Initializable {
 		Pane doctorPatientsPane;
 		try {
 			doctorPatientsPane = FXMLLoader
-					.load(getClass().getResource("/doctor/view/DoctorPatientsLayout.fxml"));
+					.load(getClass().getResource(DoctorParams.DOCTOR_PATIENTS_VIEW));
 			mainPane.getChildren().removeAll();
 			mainPane.getChildren().setAll(doctorPatientsPane);
 		} catch (IOException error) {
@@ -207,7 +207,7 @@ public class PatientRecordsController implements Initializable {
 	// Displays any error returned form the Rest API
 	private void openDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/doctor/view/DialogPopUpLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
 			Parent root = (Parent) loader.load();
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);

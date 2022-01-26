@@ -71,7 +71,7 @@ public class DoctorPatientsController implements Initializable {
 	@FXML
 	private void openAddPatients() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/doctor/view/AddPatientsLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.ADD_PATIENT_VIEW));
 			Parent root = (Parent) loader.load();
 			Stage stage = new Stage();
 			Scene scene = new Scene(root);
@@ -104,7 +104,7 @@ public class DoctorPatientsController implements Initializable {
 	// Displays any error returned form the Rest API
 	private void openDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/common/view/DialogPopUpLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
 			Parent root = (Parent) loader.load();
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);

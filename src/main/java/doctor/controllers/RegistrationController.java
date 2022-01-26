@@ -118,7 +118,7 @@ public class RegistrationController implements Initializable {
 	// When press it goes back to the logIn pane
 	@FXML
 	private void backToMenu(MouseEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource("/doctor/view/LogInLayout.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource(DoctorParams.LOG_IN_VIEW));
 		LaunchApp.getStage().getScene().setRoot(root);
 	}
 
@@ -135,7 +135,7 @@ public class RegistrationController implements Initializable {
 
 	private void openErrorDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/doctor/view/DialogPopUpLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
 			Parent root = (Parent) loader.load();
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);
@@ -158,7 +158,7 @@ public class RegistrationController implements Initializable {
 	
 	private void openAccountCreatedDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/doctor/view/DialogPopUpLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
 			Parent root = (Parent) loader.load();
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);
@@ -182,7 +182,7 @@ public class RegistrationController implements Initializable {
 
 	private void goBack() {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/doctor/view/LogInLayout.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource(DoctorParams.LOG_IN_VIEW));
 			LaunchApp.getStage().getScene().setRoot(root);
 			registerButton.setDisable(false);
 		} catch (IOException error) {

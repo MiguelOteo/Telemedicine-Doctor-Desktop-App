@@ -58,7 +58,7 @@
                   <Font name="Ebrima" size="14.0" />
                </font>
             </JFXButton>
-            <JFXPasswordField fx:id="userPasswordField" focusColor="#0193bb" labelFloat="true" layoutX="90.0" layoutY="268.0" prefHeight="35.0" prefWidth="240.0" promptText="Password:" unFocusColor="#00000080">
+            <JFXPasswordField fx:id="userPasswordField" focusColor="#009d73" labelFloat="true" layoutX="90.0" layoutY="268.0" prefHeight="35.0" prefWidth="240.0" promptText="Password:" unFocusColor="#00000080">
                <font>
                   <Font name="Ebrima" size="14.0" />
                </font>
@@ -68,7 +68,7 @@
                   <Font name="Ebrima" size="20.0" />
                </font>
             </JFXButton>
-            <JFXTextField fx:id="userEmailField" focusColor="#0193bb" labelFloat="true" layoutX="90.0" layoutY="175.0" prefHeight="35.0" prefWidth="240.0" promptText="User email" unFocusColor="#0000007e">
+            <JFXTextField fx:id="userEmailField" focusColor="#009d73" labelFloat="true" layoutX="90.0" layoutY="175.0" prefHeight="35.0" prefWidth="240.0" promptText="User email" unFocusColor="#0000007e">
                <font>
                   <Font name="Ebrima" size="14.0" />
                </font>

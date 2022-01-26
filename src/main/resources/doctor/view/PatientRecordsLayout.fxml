@@ -90,6 +90,6 @@
             <Font size="16.0" />
          </font>
       </Label>
-      <JFXComboBox fx:id="timeSelection" focusColor="#0193bb" layoutX="664.0" layoutY="157.0" prefHeight="30.0" prefWidth="220.0" promptText="Select recording time" styleClass="comboBox" unFocusColor="#4d4d4d80" />
+      <JFXComboBox fx:id="timeSelection" focusColor="#009d73" layoutX="664.0" layoutY="157.0" prefHeight="30.0" prefWidth="220.0" promptText="Select recording time" styleClass="comboBox" unFocusColor="#4d4d4d80" />
 	</children>
 </Pane>

@@ -21,7 +21,7 @@ public class AddPatientTreeObject extends RecursiveTreeObject<AddPatientTreeObje
 		this.patientName = new SimpleStringProperty(patientName);
 		this.patientIdNumber = new SimpleStringProperty(patientIdNumber);
 		JFXCheckBox checkBox = new JFXCheckBox();
-		checkBox.setCheckedColor(Color.web("#4f90a5",1.0));
+		checkBox.setCheckedColor(Color.web("#009d73",1.0));
 		this.selectedPatient = new SimpleObjectProperty<JFXCheckBox>(checkBox);	
 	}
 

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 
 import doctor.communication.AccountObjectCommunication;
+import doctor.params.DoctorParams;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -80,7 +81,7 @@ public class DoctorMenuController implements Initializable {
 	private void openDoctorPatients() {
 		Pane doctorPatientsPane;
 		try {
-			doctorPatientsPane = FXMLLoader.load(getClass().getResource("/doctor/view/DoctorPatientsLayout.fxml"));
+			doctorPatientsPane = FXMLLoader.load(getClass().getResource(DoctorParams.DOCTOR_PATIENTS_VIEW));
 			menuMainPane.getChildren().removeAll();
 			menuMainPane.getChildren().setAll(doctorPatientsPane);
 			doctorPatients.setDisable(true);
@@ -94,7 +95,7 @@ public class DoctorMenuController implements Initializable {
 	private void openDoctorAccount() {
 		Pane doctorAccountPane;
 		try {
-			doctorAccountPane = FXMLLoader.load(getClass().getResource("/doctor/view/DoctorAccountLayout.fxml"));
+			doctorAccountPane = FXMLLoader.load(getClass().getResource(DoctorParams.DOCTOR_ACCOUNT_VIEW));
 			menuMainPane.getChildren().removeAll();
 			menuMainPane.getChildren().setAll(doctorAccountPane);
 			doctorPatients.setDisable(false);
@@ -107,7 +108,7 @@ public class DoctorMenuController implements Initializable {
 
 	private void opendIdPopUp() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/doctor/view/InsertIdLayout.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.INSERT_ID_VIEW));
 			Parent root = (Parent) loader.load();
 			Stage stage = new Stage();
 			Scene scene = new Scene(root);

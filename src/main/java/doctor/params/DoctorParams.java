@@ -10,4 +10,14 @@ public @interface DoctorParams {
 	
 	// Parameters for BITalino record and display data on graphs
 	public static final int SAMPLING_RATE = 100;
+	
+	// FXML files roots
+	public static final String LOG_IN_VIEW = "/doctor/view/LogInLayout.fxml";
+	public static final String REGISTRATION_VIEW = "/doctor/view/RegistrationLayout.fxml";
+	public static final String INSERT_ID_VIEW = "/doctor/view/InsertIdLayout.fxml";
+	public static final String DIALOG_POP_UP_VIEW = "/doctor/view/DialogPopUpLayout.fxml";
+	public static final String DOCTOR_ACCOUNT_VIEW = "/doctor/view/DoctorAccountLayout.fxml";
+	public static final String DOCTOR_PATIENTS_VIEW = "/doctor/view/DoctorPatientsLayout.fxml";
+	public static final String ADD_PATIENT_VIEW = "/doctor/view/AddPatientsLayout.fxml";
+	public static final String PATIENT_RECORDS_VIEW = "/doctor/view/PatientRecordsLayout.fxml";
 }
