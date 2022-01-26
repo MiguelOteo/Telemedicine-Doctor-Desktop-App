@@ -12,7 +12,6 @@
 
 # Package Files #
 *.fxbuild
-*.classpath
 *.project
 *.jar
 *.war
