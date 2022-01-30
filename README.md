@@ -113,3 +113,16 @@ When you select the option "Your patients" on the side menu a new view is loaded
 <img src="readme/resources/your_patients_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
+<div align="center">
+<img src="readme/resources/add_patients_view.png" alt="drawing" width="1280" padding=100%/>  
+</div>
+
+<div align="center">
+<img src="readme/resources/your_patients_view_2.png" alt="drawing" width="1280" padding=100%/>  
+</div>
+
+<div align="center">
+<img src="readme/resources/patient_records_view.png" alt="drawing" width="1280" padding=100%/>  
+</div>
+
+
