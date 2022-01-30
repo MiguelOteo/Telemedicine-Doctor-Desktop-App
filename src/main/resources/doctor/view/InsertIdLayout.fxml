@@ -10,7 +10,7 @@
    <children>
       <Pane layoutX="5.0" layoutY="5.0" prefHeight="150.0" prefWidth="300.0" styleClass="white_color_id_field">
          <children>
-            <JFXTextField fx:id="idField" focusColor="#4094a8" layoutX="40.0" layoutY="25.0" prefHeight="35.0" prefWidth="220.0" promptText="message" styleClass="id-text-field">
+            <JFXTextField fx:id="idField" focusColor="#009d73" layoutX="40.0" layoutY="25.0" prefHeight="35.0" prefWidth="220.0" promptText="message" styleClass="id-text-field">
                <font>
                   <Font size="14.0" />
                </font>
