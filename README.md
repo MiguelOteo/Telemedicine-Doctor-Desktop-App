@@ -77,3 +77,5 @@ If the user does not have an account they can create one by clicking on the butt
 <div align="center">
 <img src="readme/resources/hospital_registration.png" alt="drawing" width="650" padding=100%/>  
 </div>
+
+-------------------------------
