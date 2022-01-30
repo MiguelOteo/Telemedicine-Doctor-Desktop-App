@@ -49,11 +49,17 @@ This project uses the following Maven dependencies
 
 ## 3. Project Set-Up and compilation
 
+### Project Set-Up
+
 #### On Eclipse
 The repository constains the .classpath file from Eclipse IDE, this project should build itself when opened with this IDE without any additional steps.
 
 #### On other IDEs
 There could be problems with the structure of the project when opened from a different IDE, you might need to stablish the structure of the project manually.
+
+### Porject compilation
+
+The pom.xml file is design to compile the project into a fat-jar constaining all the dependencies needed for the project to work, remember that the project will only run on Java 11 or newer.
 
 -------------------------------
 
