@@ -1,5 +1,9 @@
 # Telelepsia Doctor Desktop App
 ## Telemedicine Project (Java 11)
+<div align="center">
+<img src="readme/resources/logo.png" alt="drawing" width="300" padding=100%/>  
+</div>
+
 -------------------------------
 ### Index
 
