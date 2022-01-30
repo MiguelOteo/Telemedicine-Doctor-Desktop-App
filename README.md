@@ -1,2 +1,2 @@
-# Telemedicine-Doctor-Desktop-App
-JavaFX Telemedicine project for doctors
+# Telelepsia Doctor Desktop App
+## Telemedicine Project (Java 11)
