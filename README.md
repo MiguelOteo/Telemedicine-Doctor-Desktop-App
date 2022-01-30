@@ -84,5 +84,9 @@ The pom.xml file is designed to compile the project into a fat-jar constaining a
 
 1.2.2. Once the account parameters have been introduced and validated by the server before storing them as a new user in the data-base, a message pop-up will show up to indicate the result of the request to the server. This will return a message like "Doctor account created" or an error like "User already exists" if the email was used already as it can be seen in the next image.
 
+<div align="center">
+<img src="readme/resources/hospital_registration_pop_up.png" alt="drawing" width="650" padding=100%/>  
+</div>
+
 -------------------------------
 ### 4.2. Main application menu 
