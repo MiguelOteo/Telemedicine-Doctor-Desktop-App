@@ -106,13 +106,14 @@ After inserting the ID the account information tab is shown as default when you 
 <img src="readme/resources/main_menu_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
-#### 2.3. Add Patients under your supervision
+#### 2.3. See patients under your supervision
 When you select the option "Your patients" on the side menu a new view is loaded showing your patients that the doctor supervises, if no patient is in the list new patients can be added to it by clicking on the "Add new patients" button. 
 
 <div align="center">
 <img src="readme/resources/your_patients_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
+#### 2.4. Add new patients to your supervision
 When the button "Add new patients" is pressed a pop-up shows in which patients without an assigned doctor can be selected and assigned to the loged-in doctor.
 <div align="center">
 <img src="readme/resources/add_patients_view.png" alt="drawing" width="1280" padding=100%/>  
@@ -122,8 +123,8 @@ When the button "Add new patients" is pressed a pop-up shows in which patients w
 <img src="readme/resources/your_patients_view_2.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
-#### 2.4. Show patrient's records
-
+#### 2.5. Show patrient's records
+If the button "Show details" of any patient is pressed a new pane is displayed in which more details of the patient can be seen as well as the recordings done with the BITalino, both the ECG and EMG.
 <div align="center">
 <img src="readme/resources/patient_records_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
