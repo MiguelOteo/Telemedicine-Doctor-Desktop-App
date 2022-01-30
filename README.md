@@ -98,3 +98,12 @@ Once the user logs-in a pop-up will be displayed for the doctor to identify hims
 <div align="center">
 <img src="readme/resources/insert_id_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
+
+<div align="center">
+<img src="readme/resources/main_menu_view.png" alt="drawing" width="1280" padding=100%/>  
+</div>
+
+<div align="center">
+<img src="readme/resources/your_patients_view.png" alt="drawing" width="1280" padding=100%/>  
+</div>
+
