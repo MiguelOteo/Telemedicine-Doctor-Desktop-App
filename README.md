@@ -47,14 +47,12 @@ This project uses the following Maven dependencies
 
 -------------------------------
 
-## 3. Project Set-Up 
+## 3. Project Set-Up and compilation
 
-### On Eclipse
-
+#### On Eclipse
 The repository constains the .classpath file from Eclipse IDE, this project should build itself when opened with this IDE without any additional steps.
 
-### On other IDEs
-
+#### On other IDEs
 There could be problems with the structure of the project when opened from a different IDE, you might need to stablish the structure of the project manually.
 
 -------------------------------
