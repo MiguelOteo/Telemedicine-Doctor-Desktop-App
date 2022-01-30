@@ -93,6 +93,7 @@ Once the account parameters have been introduced and validated by the server bef
 -------------------------------
 ### 2. Main application menu 
 #### 2.1. Insert Doctor ID View
+Once the user logs-in a pop-up will be displayed for the doctor to identify himself as a real doctor, in this case the ID uses the format of 8 digits and a letter form a list, in reality this ID should be verify aginst a hospital data-base to validate the doctor authenticity. This pop-up will show up everytime the doctor logs-in until a valid ID is inserted, this blocks the application from continuing blocking the access to patients information.
 
 <div align="center">
 <img src="readme/resources/insert_id_view.png" alt="drawing" width="1280" padding=100%/>  
