@@ -99,12 +99,15 @@ Once the user logs-in a pop-up will be displayed for the doctor to identify hims
 <img src="readme/resources/insert_id_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
-### 2.2. Account settings and information tab
+#### 2.2. Account settings and information tab
 After inserting the ID the account information tab is shown as default when you log-in to see the main parameters of your account as a doctor and to update any of the information if needed.
 
 <div align="center">
 <img src="readme/resources/main_menu_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
+
+#### 2.3. Add Patients under your supervision
+When you select the option "Your patients" on the side menu a new view is loaded showing your patients that the doctor supervises, if no patient is in the list new patients can be added to it by clicking on the "Add Patients" button. 
 
 <div align="center">
 <img src="readme/resources/your_patients_view.png" alt="drawing" width="1280" padding=100%/>  
