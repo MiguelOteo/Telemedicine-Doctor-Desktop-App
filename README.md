@@ -8,8 +8,9 @@
 ### Index
 
 1. Introduction
-2. Admin & Installation Manual
-3. Doctor Manual
+2. About the Project
+3. Project Set-Up 
+4. Doctor Manual
 
 -------------------------------
 
@@ -25,7 +26,7 @@ This is part of a teledicine project together with two other repositories whose 
 
 -------------------------------
 
-## 2. About the project
+## 2. About the Project
 
 ### About the programming languages:
 
