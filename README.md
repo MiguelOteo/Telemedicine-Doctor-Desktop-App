@@ -25,7 +25,7 @@ This is part of a teledicine project together with two other repositories whose 
 
 -------------------------------
 
-## 2. Admin & Installation Manual
+## 2. About the project
 
 ### About the programming languages:
 
@@ -33,7 +33,7 @@ This is part of a teledicine project together with two other repositories whose 
 * FXML for the layout files
 * XML in the pom.xml for maven project structure, dependencies and compilation process
 
-## JavaFX Project Maven dependencies
+### JavaFX Project Maven dependencies
 
 This project uses the following Maven dependencies
 
