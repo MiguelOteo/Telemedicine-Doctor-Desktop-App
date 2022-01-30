@@ -65,6 +65,7 @@ The pom.xml file is designed to compile the project into a fat-jar constaining a
 
 ## 4. Doctor Manual
 
+### Log-in and Registration of users (Doctors)
 When loading the application the user will see a log-in view to access their accounts.
 
 <div align="center">
