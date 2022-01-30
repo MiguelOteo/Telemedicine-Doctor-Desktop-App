@@ -107,7 +107,7 @@ After inserting the ID the account information tab is shown as default when you 
 </div>
 
 #### 2.3. Add Patients under your supervision
-When you select the option "Your patients" on the side menu a new view is loaded showing your patients that the doctor supervises, if no patient is in the list new patients can be added to it by clicking on the "Add Patients" button. 
+When you select the option "Your patients" on the side menu a new view is loaded showing your patients that the doctor supervises, if no patient is in the list new patients can be added to it by clicking on the "Add new patients" button. 
 
 <div align="center">
 <img src="readme/resources/your_patients_view.png" alt="drawing" width="1280" padding=100%/>  
