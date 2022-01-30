@@ -45,4 +45,8 @@ This project uses the following Maven dependencies
 5. slf4j-simple 2.0.0-alpha0 dependency: https://mvnrepository.com/artifact/org.slf4j/slf4j-simple/2.0.0-alpha0
 7. controlsfx 11.1.0 dependency: https://mvnrepository.com/artifact/org.controlsfx/controlsfx/11.1.0
 
+-------------------------------
+
+## 3. Project Set-Up 
+
 
