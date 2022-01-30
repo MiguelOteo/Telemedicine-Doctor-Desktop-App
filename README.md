@@ -57,4 +57,6 @@ The repository constains the .classpath file from Eclipse IDE, this project shou
 
 There could be problems with the structure of the project when opened from a different IDE, you might need to stablish the structure of the project manually.
 
+-------------------------------
 
+## 4. Doctor Manual
