@@ -71,7 +71,7 @@ When loading the application the user will see a log-in view to access their acc
 <img src="readme/resources/hospital_log_in.png" alt="drawing" width="650" padding=100%/>  
 </div>
 
-If the user does not have an account they can create one by clicking on the button "sign in", if so a new view will appear for the user to register himself
+If the user does not have an account they can create one by clicking on the button "sign up", if so a new view will appear for the user to register himself
 
 <div align="center">
 <img src="readme/resources/hospital_log_in.png" alt="drawing" width="650" padding=100%/>  
