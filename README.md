@@ -93,3 +93,7 @@ Once the account parameters have been introduced and validated by the server bef
 -------------------------------
 ### 2. Main application menu 
 #### 2.1. Insert Doctor ID View
+
+<div align="center">
+<img src="readme/resources/insert_id_view.png" alt="drawing" width="650" padding=100%/>  
+</div>
