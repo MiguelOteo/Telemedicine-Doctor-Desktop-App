@@ -70,7 +70,7 @@ The pom.xml file is designed to compile the project into a fat-jar constaining a
 ## 4. Doctor Manual
 
 ### 4.1. Log-in and Registration of users (Doctors)
-1.1. When loading the application the user will see a log-in view to access their accounts, the application checks for a valid password and email.
+1.1.1. When loading the application the user will see a log-in view to access their accounts, the application checks for a valid password and email.
 
 <div align="center">
 <img src="readme/resources/hospital_log_in.png" alt="drawing" width="650" padding=100%/>  
