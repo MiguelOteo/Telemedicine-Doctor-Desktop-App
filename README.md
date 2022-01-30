@@ -82,5 +82,7 @@ If the user does not have an account they can create one by clicking on the butt
 <img src="readme/resources/hospital_registration.png" alt="drawing" width="650" padding=100%/>  
 </div>
 
+Once the account parameters have been introduced and validated by the server before storing them as a new user in the data-base, a message pop-up will show up to indicate the result of the request to the server. This will return a message like "Doctor account created" or an error like "User already exists" if the email was used already as it can be seen in the next image.
+
 -------------------------------
 ### 4.2. Main application menu 
