@@ -33,4 +33,15 @@ This is part of a teledicine project together with two other repositories whose 
 * FXML for the layout files
 * XML in the pom.xml for maven project structure, dependencies and compilation process
 
+## JavaFX Project Maven dependencies
+
+This project uses the following Maven dependencies
+
+1. gson dependency: https://mvnrepository.com/artifact/com.google.code.gson/gson
+2. json dependency: https://mvnrepository.com/artifact/org.json/json
+3. jfoenix 9.0.1 dependency: https://mvnrepository.com/artifact/com.jfoenix/jfoenix/9.0.1
+4. chartfx-chart 11.5.1 dependency: https://mvnrepository.com/artifact/de.gsi.chart/chartfx-chart/11.1.5
+5. slf4j-simple 2.0.0-alpha0 dependency: https://mvnrepository.com/artifact/org.slf4j/slf4j-simple/2.0.0-alpha0
+7. controlsfx 11.1.0 dependency: https://mvnrepository.com/artifact/org.controlsfx/controlsfx/11.1.0
+
 
