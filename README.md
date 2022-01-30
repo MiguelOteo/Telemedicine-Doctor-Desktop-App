@@ -13,6 +13,7 @@
 4. Doctor Manual
 
 -------------------------------
+-------------------------------
 
 ## 1. Introduction
 
@@ -24,6 +25,7 @@ This is part of a teledicine project together with two other repositories whose 
 2. Telemedicine-Patient-Desktop-App: https://github.com/MiguelOteo/Telemedicine-Patient-Desktop-App
 3. Telemedicine-Rest-API: https://github.com/MiguelOteo/Telemedicine-Rest-API
 
+-------------------------------
 -------------------------------
 
 ## 2. About the Project
@@ -46,6 +48,7 @@ This project uses the following Maven dependencies
 7. controlsfx 11.1.0 dependency: https://mvnrepository.com/artifact/org.controlsfx/controlsfx/11.1.0
 
 -------------------------------
+-------------------------------
 
 ## 3. Project Set-Up and compilation
 
@@ -62,17 +65,28 @@ There could be problems with the structure of the project when opened from a dif
 The pom.xml file is designed to compile the project into a fat-jar constaining all the dependencies needed for the project to work, remember that the project will only run on Java 11 or newer.
 
 -------------------------------
+-------------------------------
 
 ## 4. Doctor Manual
 
-When loading the application the user will see a log-in view to access their accounts.
+### 4.1. Log-in and Registration of users (Doctors)
+1.1.1. When loading the application the user will see a log-in view to access their accounts, the application checks for a valid password and email.
 
 <div align="center">
 <img src="readme/resources/hospital_log_in.png" alt="drawing" width="650" padding=100%/>  
 </div>
 
-If the user does not have an account they can create one by clicking on the button "sign up", if so a new view will appear for the user to register himself
+1.2.1. If the user does not have an account they can create one by clicking on the button "sign up", if so a new view will appear for the user to register himself, the application checks all the parameter to not be empyty and to have the correct format.
 
 <div align="center">
-<img src="readme/resources/hospital_log_in.png" alt="drawing" width="650" padding=100%/>  
+<img src="readme/resources/hospital_registration.png" alt="drawing" width="650" padding=100%/>  
 </div>
+
+1.2.2. Once the account parameters have been introduced and validated by the server before storing them as a new user in the data-base, a message pop-up will show up to indicate the result of the request to the server. This will return a message like "Doctor account created" or an error like "User already exists" if the email was used already as it can be seen in the next image.
+
+<div align="center">
+<img src="readme/resources/hospital_registration_pop_up.png" alt="drawing" width="650" padding=100%/>  
+</div>
+
+-------------------------------
+### 4.2. Main application menu 
