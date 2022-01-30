@@ -19,4 +19,7 @@ This is part of a teledicine project together with two other repositories whose 
 2. Telemedicine-Patient-Desktop-App: https://github.com/MiguelOteo/Telemedicine-Patient-Desktop-App
 3. Telemedicine-Rest-API: https://github.com/MiguelOteo/Telemedicine-Rest-API
 
+-------------------------------
+
+## 2. Admin & Installation Manual
 
