@@ -59,7 +59,7 @@ There could be problems with the structure of the project when opened from a dif
 
 ### Porject compilation
 
-The pom.xml file is design to compile the project into a fat-jar constaining all the dependencies needed for the project to work, remember that the project will only run on Java 11 or newer.
+The pom.xml file is designed to compile the project into a fat-jar constaining all the dependencies needed for the project to work, remember that the project will only run on Java 11 or newer.
 
 -------------------------------
 
