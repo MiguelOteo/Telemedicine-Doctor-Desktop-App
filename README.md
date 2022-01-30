@@ -113,6 +113,7 @@ When you select the option "Your patients" on the side menu a new view is loaded
 <img src="readme/resources/your_patients_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
+When the button "Add new patients" is pressed a pop-up shows in which patients without an assigned doctor can be selected and assigned to the loged-in doctor.
 <div align="center">
 <img src="readme/resources/add_patients_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
