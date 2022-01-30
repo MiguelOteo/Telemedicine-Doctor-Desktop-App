@@ -27,3 +27,10 @@ This is part of a teledicine project together with two other repositories whose 
 
 ## 2. Admin & Installation Manual
 
+### About the programming languages:
+
+* Java, version 11 to use more updated libraries
+* FXML for the layout files
+* XML in the maven pom.xml maven projects
+
+
