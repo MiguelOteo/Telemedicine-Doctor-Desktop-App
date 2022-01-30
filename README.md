@@ -119,12 +119,13 @@ When the button "Add new patients" is pressed a pop-up shows in which patients w
 <img src="readme/resources/add_patients_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
+#### 2.5. Patients list interactions
 After closing the pop-up the new assigned patients will be displayed in the main list of your patients, together two different actions will show as two ubttons, the frist one "Show details" to display the patient information and the "Delete assignment" button to remove it of the list of patients
 <div align="center">
 <img src="readme/resources/your_patients_view_2.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
-#### 2.5. Show patrient's records
+#### 2.6. Show patrient's records
 If the button "Show details" of any patient is pressed a new pane is displayed in which more details of the patient can be seen as well as the recordings done with the BITalino, both the ECG and EMG.
 <div align="center">
 <img src="readme/resources/patient_records_view.png" alt="drawing" width="1280" padding=100%/>  
