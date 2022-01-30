@@ -68,5 +68,5 @@ The pom.xml file is designed to compile the project into a fat-jar constaining a
 When loading the application the user will see a log-in view to access their accounts.
 
 <div align="center">
-<img src="readme/resources/hospital_log_in.png" alt="drawing" width="720" padding=100%/>  
+<img src="readme/resources/hospital_log_in.png" alt="drawing" width="650" padding=100%/>  
 </div>
