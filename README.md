@@ -13,6 +13,7 @@
 4. Doctor Manual
 
 -------------------------------
+-------------------------------
 
 ## 1. Introduction
 
@@ -24,6 +25,7 @@ This is part of a teledicine project together with two other repositories whose 
 2. Telemedicine-Patient-Desktop-App: https://github.com/MiguelOteo/Telemedicine-Patient-Desktop-App
 3. Telemedicine-Rest-API: https://github.com/MiguelOteo/Telemedicine-Rest-API
 
+-------------------------------
 -------------------------------
 
 ## 2. About the Project
@@ -46,6 +48,7 @@ This project uses the following Maven dependencies
 7. controlsfx 11.1.0 dependency: https://mvnrepository.com/artifact/org.controlsfx/controlsfx/11.1.0
 
 -------------------------------
+-------------------------------
 
 ## 3. Project Set-Up and compilation
 
@@ -61,6 +64,7 @@ There could be problems with the structure of the project when opened from a dif
 
 The pom.xml file is designed to compile the project into a fat-jar constaining all the dependencies needed for the project to work, remember that the project will only run on Java 11 or newer.
 
+-------------------------------
 -------------------------------
 
 ## 4. Doctor Manual
