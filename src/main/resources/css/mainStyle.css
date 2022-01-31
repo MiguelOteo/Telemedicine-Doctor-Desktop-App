@@ -377,3 +377,7 @@
 .date-picker-popup .spinner .button .right-arrow {
 	-fx-background-color: white;
 }
+
+.chart_line .ct-line {
+	-fx-stroke: #009d73;
+}

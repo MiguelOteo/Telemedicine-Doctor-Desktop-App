@@ -53,7 +53,8 @@
 			<version>11.1.0</version>
 		</dependency>
 
-
+		<!-- Java Fx dependencies -->
+		
 		<!-- https://mvnrepository.com/artifact/org.openjfx/javafx-graphics -->
 		<dependency>
 			<groupId>org.openjfx</groupId>
