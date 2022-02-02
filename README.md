@@ -131,6 +131,7 @@ If the button "Show details" of any patient is pressed a new pane is displayed i
 <img src="readme/resources/patient_records_view.png" alt="drawing" width="1280" padding=100%/>  
 </div>
 
+When a available time of 20 minutes is selected the graph of both the EMG and the ECG can be seen for the doctor to analyse them an detect some possible epilepsia attack.
 <div align="center">
 <img src="readme/resources/patient_records_view_2.png" alt="drawing" width="1280" padding=100%/>  
 </div>
