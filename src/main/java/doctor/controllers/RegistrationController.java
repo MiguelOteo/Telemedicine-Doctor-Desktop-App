@@ -144,11 +144,18 @@ public class RegistrationController implements Initializable {
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);
 			Stage stage = new Stage();
+			stage.setHeight(130);
+			stage.setWidth(300);
 			Scene scene = new Scene(root);
 			scene.setFill(Color.TRANSPARENT);
-			stage.setScene(scene);
+			stage.setScene(scene);			
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
+			
+			// Set the pop up in the center of the login window
+			stage.setX(LaunchApp.getStage().getX() + LaunchApp.getStage().getWidth() / 2 - stage.getWidth() / 2);
+			stage.setY(-50 + LaunchApp.getStage().getY() + LaunchApp.getStage().getHeight() / 2 - stage.getHeight() / 2);
+			
 			registrationPane.getParent().setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
 			stage.setOnHiding(event -> {
@@ -167,11 +174,18 @@ public class RegistrationController implements Initializable {
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);
 			Stage stage = new Stage();
+			stage.setHeight(130);
+			stage.setWidth(300);
 			Scene scene = new Scene(root);
 			scene.setFill(Color.TRANSPARENT);
 			stage.setScene(scene);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
+			
+			// Set the pop up in the center of the login window
+			stage.setX(LaunchApp.getStage().getX() + LaunchApp.getStage().getWidth() / 2 - stage.getWidth() / 2);
+			stage.setY(-50 + LaunchApp.getStage().getY() + LaunchApp.getStage().getHeight() / 2 - stage.getHeight() / 2);
+			
 			registrationPane.getParent().setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
 			stage.setOnHiding(event -> {

@@ -42,6 +42,8 @@ import launch.LaunchApp;
 
 public class LogInController implements Initializable {
 
+	private static Stage mainMenu;
+	
 	private double xOffset = 0, yOffset = 0;
 	
 	// JavaFx layout elements
@@ -121,6 +123,10 @@ public class LogInController implements Initializable {
 		stage.setIconified(true);
 	}
 
+	public static Stage getStage() {
+		return mainMenu;
+	}
+	
 	private void launchMenu(String fileName) {
 		try {
 			LaunchApp.getStage().hide();
@@ -134,11 +140,13 @@ public class LogInController implements Initializable {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.setScene(scene);
 			
-			// In case the user wants to move the app along the screen
-			moveWindow(root, stage);
+			 mainMenu = stage;
 			
-			stage.show();
-			stage.setOnHiding(event -> {
+			// In case the user wants to move the app along the screen
+			moveWindow(root,  mainMenu);
+			
+			mainMenu.show();
+			mainMenu.setOnHiding(event -> {
 				logInButton.setDisable(false);
 			});
 		} catch (IOException error) {
@@ -153,11 +161,18 @@ public class LogInController implements Initializable {
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);
 			Stage stage = new Stage();
+			stage.setHeight(130);
+			stage.setWidth(300);
 			Scene scene = new Scene(root);
 			scene.setFill(Color.TRANSPARENT);
 			stage.setScene(scene);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
+			
+			// Set the pop up in the center of the login window
+			stage.setX(LaunchApp.getStage().getX() + LaunchApp.getStage().getWidth() / 2 - stage.getWidth() / 2);
+			stage.setY(-50 + LaunchApp.getStage().getY() + LaunchApp.getStage().getHeight() / 2 - stage.getHeight() / 2);
+			
 			anchorPane.setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
 			stage.setOnHiding(event -> {
