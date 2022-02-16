@@ -212,11 +212,18 @@ public class PatientRecordsController implements Initializable {
 			DialogPopUpController controler = loader.getController();
 			controler.setMessage(message);
 			Stage stage = new Stage();
+			stage.setHeight(130);
+			stage.setWidth(300);
 			Scene scene = new Scene(root);
 			scene.setFill(Color.TRANSPARENT);
 			stage.setScene(scene);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
+			
+			// Set the pop up in the center of the main menu window
+			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);
+			stage.setY(-75 + LogInController.getStage().getY() + LogInController.getStage().getHeight() / 2 - stage.getHeight() / 2);
+			
 			AccountObjectCommunication.getAnchorPane().setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
 			stage.setOnHiding(event -> {

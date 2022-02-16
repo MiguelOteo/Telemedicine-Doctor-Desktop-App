@@ -119,9 +119,9 @@ public class DoctorMenuController implements Initializable {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			
-			// Set the pop up in the center of the login window
-			stage.setX(LaunchApp.getStage().getX() + LaunchApp.getStage().getWidth() / 2 - stage.getWidth() / 2);
-			stage.setY(-75 + LaunchApp.getStage().getY() + LaunchApp.getStage().getHeight() / 2 - stage.getHeight() / 2);
+			// Set the pop up in the center of the main menu window
+			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);
+			stage.setY(-75 + LogInController.getStage().getY() + LogInController.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
 			menuWindow.setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
