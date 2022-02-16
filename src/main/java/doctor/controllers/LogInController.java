@@ -24,6 +24,7 @@ import doctor.params.DoctorParams;
 import doctor.utility.RegexValidator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -41,6 +42,8 @@ import launch.LaunchApp;
 
 public class LogInController implements Initializable {
 
+	private double xOffset = 0, yOffset = 0;
+	
 	// JavaFx layout elements
 	@FXML
 	private AnchorPane anchorPane;
@@ -130,6 +133,10 @@ public class LogInController implements Initializable {
 			scene.setFill(Color.TRANSPARENT);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.setScene(scene);
+			
+			// In case the user wants to move the app along the screen
+			moveWindow(root, stage);
+			
 			stage.show();
 			stage.setOnHiding(event -> {
 				logInButton.setDisable(false);
@@ -223,6 +230,25 @@ public class LogInController implements Initializable {
 			}
 		};
 		threadObject.start();
+	}
+	
+	public void moveWindow(Parent root, Stage stage) {
+		
+		root.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				xOffset = event.getSceneX();
+				yOffset = event.getSceneY();
+			}
+		});
+		
+		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				stage.setX(event.getScreenX() - xOffset);
+				stage.setY(event.getScreenY() - yOffset);
+			}
+		});
 	}
 }
 

@@ -23,6 +23,7 @@ import doctor.params.DoctorParams;
 import doctor.utility.RegexValidator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -39,6 +40,8 @@ import launch.LaunchApp;
 
 public class RegistrationController implements Initializable {
 
+	private double xOffset = 0, yOffset = 0;
+	
 	@FXML
 	private Pane registrationPane;
 	@FXML
@@ -119,6 +122,7 @@ public class RegistrationController implements Initializable {
 	@FXML
 	private void backToMenu(MouseEvent event) throws IOException {
 		Parent root = FXMLLoader.load(getClass().getResource(DoctorParams.LOG_IN_VIEW));
+		moveWindow(root, LaunchApp.getStage());
 		LaunchApp.getStage().getScene().setRoot(root);
 	}
 
@@ -251,5 +255,24 @@ public class RegistrationController implements Initializable {
 			}
 		};
 		threadObject.start();
+	}
+	
+	public void moveWindow(Parent root, Stage stage) {
+		
+		root.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				xOffset = event.getSceneX();
+				yOffset = event.getSceneY();
+			}
+		});
+		
+		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				stage.setX(event.getScreenX() - xOffset);
+				stage.setY(event.getScreenY() - yOffset);
+			}
+		});
 	}
 }
