@@ -270,8 +270,16 @@ public class RegistrationController implements Initializable {
 		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
+				stage.setOpacity(0.8);
 				stage.setX(event.getScreenX() - xOffset);
 				stage.setY(event.getScreenY() - yOffset);
+			}
+		});
+		
+		root.setOnMouseReleased(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				stage.setOpacity(1);
 			}
 		});
 	}
