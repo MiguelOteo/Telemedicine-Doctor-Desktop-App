@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>Telemedicine-Doctor-Desktop-App</groupId>
     <artifactId>Telemedicine-Doctor-Desktop-App</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
     
     	<dependencies>
@@ -90,7 +90,7 @@
 
 	<build>
 		<sourceDirectory>src/main/java</sourceDirectory>
-		<finalName>Telelepsia</finalName>
+		<finalName>jar-compilation</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -139,6 +139,7 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
+							<finalName>Telelepsia-Hospitals-${project.version}</finalName>
 							<shadedArtifactAttached>true</shadedArtifactAttached>
 							<transformers>
 								<transformer
