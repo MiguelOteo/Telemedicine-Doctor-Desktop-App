@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -118,6 +119,8 @@ public class DoctorMenuController implements Initializable {
 			stage.setScene(scene);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Insert ID Number");
+			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
 			
 			// Set the pop up in the center of the main menu window
 			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);

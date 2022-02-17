@@ -30,6 +30,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.BoxBlur;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
@@ -153,6 +154,8 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 			stage.setScene(scene);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("Telelepsia Message");
+			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
 			
 			// Set the pop up in the center of the main menu window
 			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);

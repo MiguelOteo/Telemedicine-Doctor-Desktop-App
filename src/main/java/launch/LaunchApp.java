@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
@@ -27,6 +28,7 @@ public class LaunchApp extends Application {
 			scene.setFill(Color.TRANSPARENT);
 			primaryStage.setScene(scene);
 			primaryStage.initStyle(StageStyle.TRANSPARENT);
+			primaryStage.getIcons().add(new Image(DoctorParams.APP_ICON));
 			
 			stage = primaryStage;
 			

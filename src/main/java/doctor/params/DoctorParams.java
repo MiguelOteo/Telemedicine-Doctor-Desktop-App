@@ -11,6 +11,9 @@ public @interface DoctorParams {
 	// Parameters for BITalino record and display data on graphs
 	public static final int SAMPLING_RATE = 100;
 	
+	// Main app icon root
+	public static final String APP_ICON = "/icons/hospital-app-icon.png";
+	
 	// FXML files roots
 	public static final String LOG_IN_VIEW = "/doctor/view/LogInLayout.fxml";
 	public static final String REGISTRATION_VIEW = "/doctor/view/RegistrationLayout.fxml";
