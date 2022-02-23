@@ -51,6 +51,18 @@
                   </ImageView>
                </graphic>
             </JFXButton>
+            <JFXButton fx:id="doctorMessenger" alignment="TOP_LEFT" layoutY="267.0" onAction="#openDoctorMessenger" prefHeight="44.0" prefWidth="280.0" styleClass="menu_button" text="     Message your patients" textFill="#ffffffb3">
+               <font>
+                  <Font name="Ebrima" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="38.0" fitWidth="50.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" translateX="5.0">
+                     <image>
+                        <Image url="@../../icons/messenger.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
             <Pane fx:id="menuMainPane" layoutX="280.0" layoutY="5.0" prefHeight="720.0" prefWidth="965.0" styleClass="white_color" />
          </children>
       </Pane>

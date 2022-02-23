@@ -24,4 +24,5 @@ public @interface DoctorParams {
 	public static final String DOCTOR_PATIENTS_VIEW = "/doctor/view/DoctorPatientsLayout.fxml";
 	public static final String ADD_PATIENT_VIEW = "/doctor/view/AddPatientsLayout.fxml";
 	public static final String PATIENT_RECORDS_VIEW = "/doctor/view/PatientRecordsLayout.fxml";
+	public static final String DOCTOR_MESSENGER_VIEW = "/doctor/view/DoctorMessengerLayout.fxml";
 }
