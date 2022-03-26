@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
-
 
 <Pane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="965.0" styleClass="white_color" stylesheets="@../../css/mainStyle.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="doctor.controllers.DoctorMessengerController">
    <children>
@@ -30,5 +31,11 @@
             <Image url="@../../icons/messenger_black.png" />
          </image>
       </ImageView>
+      <JFXTreeTableView fx:id="messageTreeView" layoutX="43.0" layoutY="95.0" prefHeight="600.0" prefWidth="450.0" styleClass="tree_view">
+         <columnResizePolicy>
+            <TreeTableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </JFXTreeTableView>
+      <Pane layoutX="493.0" layoutY="95.0" prefHeight="600.0" prefWidth="450.0" styleClass="grey_color" stylesheets="@../../css/mainStyle.css" />
    </children>
 </Pane>

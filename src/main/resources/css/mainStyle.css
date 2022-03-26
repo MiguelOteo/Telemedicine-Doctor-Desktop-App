@@ -4,6 +4,10 @@
 	-fx-background-radius: 20 20 20 20;
 }
 
+.grey_color {
+	-fx-background-color: grey;
+}
+
 .blue_color {
    -fx-background-color: linear-gradient(to bottom left, #00dba2, #002017);
    -fx-background-radius: 25 25 25 25;
