@@ -1,18 +1,17 @@
 package launch;
-	
-import java.io.IOException;
 
 import doctor.params.DoctorParams;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
+import java.io.IOException;
+import java.util.Objects;
 
 public class LaunchApp extends Application {
 	
@@ -22,7 +21,7 @@ public class LaunchApp extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource(DoctorParams.LOG_IN_VIEW));
+			Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(DoctorParams.LOG_IN_VIEW)));
 			primaryStage.setTitle("Telelepsia Hospitals");
 			Scene scene = new Scene(root);
 			scene.setFill(Color.TRANSPARENT);
@@ -53,28 +52,17 @@ public class LaunchApp extends Application {
 	
 	public void moveWindow(Parent root, Stage stage) {
 		
-		root.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				xOffset = event.getSceneX();
-				yOffset = event.getSceneY();
-			}
+		root.setOnMousePressed(event -> {
+			xOffset = event.getSceneX();
+			yOffset = event.getSceneY();
 		});
 		
-		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				stage.setOpacity(0.8);
-				stage.setX(event.getScreenX() - xOffset);
-				stage.setY(event.getScreenY() - yOffset);
-			}
+		root.setOnMouseDragged(event -> {
+			stage.setOpacity(0.8);
+			stage.setX(event.getScreenX() - xOffset);
+			stage.setY(event.getScreenY() - yOffset);
 		});
 		
-		root.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				stage.setOpacity(1);
-			}
-		});
+		root.setOnMouseReleased(event -> stage.setOpacity(1));
 	}
 }

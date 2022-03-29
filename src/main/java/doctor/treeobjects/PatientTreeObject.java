@@ -9,6 +9,8 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
@@ -39,14 +41,14 @@ import javafx.stage.StageStyle;
 
 public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 	
-	private Pane mainPane;
-	private int patientId;
+	private final Pane mainPane;
+	private final int patientId;
 	
-	private StringProperty patientName;
-	private StringProperty patientEmail;
-	private StringProperty patientIdNumber;
-	private ObjectProperty<JFXButton> showBITalinoRecords;
-	private ObjectProperty<JFXButton> unsignPatient;
+	private final StringProperty patientName;
+	private final StringProperty patientEmail;
+	private final StringProperty patientIdNumber;
+	private final ObjectProperty<JFXButton> showBITalinoRecords;
+	private final ObjectProperty<JFXButton> unsignedPatient;
 
 	public PatientTreeObject(int patientId, String patientName, String patientEmail, String patientIdNumber, Pane pane) {
 		
@@ -59,25 +61,21 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 		
 		JFXButton showDetails = new JFXButton("Show details");
 		showDetails.getStyleClass().add("tree_table_button");
-		showDetails.setOnAction((ActionEvent event) -> {
-			openPatientRecords();
-		});
+		showDetails.setOnAction((ActionEvent event) -> openPatientRecords());
 		
-		JFXButton deleteAsingment = new JFXButton("Delete assignment"); 
-		deleteAsingment.getStyleClass().add("tree_table_button");
-		deleteAsingment.setOnAction((ActionEvent event) -> {
-			deletePatient();
-		});
+		JFXButton deleteAssignment = new JFXButton("Delete assignment");
+		deleteAssignment.getStyleClass().add("tree_table_button");
+		deleteAssignment.setOnAction((ActionEvent event) -> deletePatient());
 		
-		this.showBITalinoRecords = new SimpleObjectProperty<JFXButton>(showDetails);	
-		this.unsignPatient = new SimpleObjectProperty<JFXButton>(deleteAsingment);
+		this.showBITalinoRecords = new SimpleObjectProperty<>(showDetails);
+		this.unsignedPatient = new SimpleObjectProperty<>(deleteAssignment);
 	}
 	
 	private void openPatientRecords() {
 		Pane patientRecordsPane;	
 		try {
 			AccountObjectCommunication.setDatabaseId(patientId);
-			patientRecordsPane = FXMLLoader.load(getClass().getResource(DoctorParams.PATIENT_RECORDS_VIEW));
+			patientRecordsPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(DoctorParams.PATIENT_RECORDS_VIEW)));
 			mainPane.getChildren().removeAll();
 			mainPane.getChildren().setAll(patientRecordsPane);
 		} catch (IOException error) {
@@ -86,7 +84,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 	}
 	
 	private void deletePatient() {
-		unsignPatient.getValue().setDisable(true);
+		unsignedPatient.getValue().setDisable(true);
 		showBITalinoRecords.getValue().setDisable(true);
 		Thread threadObject = new Thread("deletingPatient") {
 			public void run() {
@@ -100,7 +98,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 					APIRequest requestAPI = new APIRequest();
 					requestAPI.setPatientId(patientId);
 					
-					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), StandardCharsets.UTF_8);
 					
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -109,7 +107,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 					
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -117,20 +115,10 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 
 					APIResponse responseAPI = gsonConverter.fromJson(response.toString(), APIResponse.class);
 					
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {	
-							openDialog(responseAPI.getAPImessage(), responseAPI.isError());
-						}
-					});
+					Platform.runLater(() -> openDialog(responseAPI.getAPImessage(), responseAPI.isError()));
 					
-				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							openDialog("Failed to connect to the server", true);
-						}
-					});
+				} catch (ConnectException | FileNotFoundException connectionError) {
+					Platform.runLater(() -> openDialog("Failed to connect to the server", true));
 				} catch (IOException error) {
 					error.printStackTrace();
 				}
@@ -143,9 +131,9 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 	private void openDialog(String message, boolean error) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
-			Parent root = (Parent) loader.load();
-			DialogPopUpController controler = loader.getController();
-			controler.setMessage(message);
+			Parent root = loader.load();
+			DialogPopUpController controller = loader.getController();
+			controller.setMessage(message);
 			Stage stage = new Stage();
 			stage.setHeight(130);
 			stage.setWidth(300);
@@ -157,7 +145,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 			stage.setTitle("Telelepsia Message");
 			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
 			
-			// Set the pop up in the center of the main menu window
+			// Set the pop-up in the center of the main menu window
 			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);
 			stage.setY(-75 + LogInController.getStage().getY() + LogInController.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
@@ -168,7 +156,7 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 				if(!error) {
 					Pane doctorPatientsPane;
 					try {
-						doctorPatientsPane = FXMLLoader.load(getClass().getResource(DoctorParams.DOCTOR_PATIENTS_VIEW));
+						doctorPatientsPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(DoctorParams.DOCTOR_PATIENTS_VIEW)));
 						mainPane.getChildren().removeAll();
 						mainPane.getChildren().setAll(doctorPatientsPane);
 					} catch (IOException exception) {
@@ -192,5 +180,5 @@ public class PatientTreeObject extends RecursiveTreeObject<PatientTreeObject> {
 
 	public ObjectProperty<JFXButton> getShowBITalinoRecords() {return showBITalinoRecords;}
 
-	public ObjectProperty<JFXButton> getUnsignPatient() {return unsignPatient;}
+	public ObjectProperty<JFXButton> getUnsignedPatient() {return unsignedPatient;}
 }

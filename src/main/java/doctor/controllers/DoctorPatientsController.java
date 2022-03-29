@@ -1,33 +1,17 @@
 package doctor.controllers;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXTreeTableColumn;
 import com.jfoenix.controls.JFXTreeTableView;
 import com.jfoenix.controls.RecursiveTreeItem;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-
 import doctor.communication.AccountObjectCommunication;
 import doctor.models.APIRequest;
 import doctor.models.APIResponse;
 import doctor.models.Patient;
-import doctor.params.DoctorParams;
 import doctor.treeobjects.PatientTreeObject;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -37,17 +21,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
+
+import java.io.*;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ResourceBundle;
+
+import static doctor.params.DoctorParams.*;
 
 public class DoctorPatientsController implements Initializable {
 
@@ -72,8 +64,8 @@ public class DoctorPatientsController implements Initializable {
 	@FXML
 	private void openAddPatients() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.ADD_PATIENT_VIEW));
-			Parent root = (Parent) loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(ADD_PATIENT_VIEW));
+			Parent root = loader.load();
 			Stage stage = new Stage();
 			stage.setWidth(500);
 			stage.setHeight(600);
@@ -83,7 +75,7 @@ public class DoctorPatientsController implements Initializable {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Add Patients");
-			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
+			stage.getIcons().add(new Image(APP_ICON));
 			
 			// Set the new window in the center of the main menu window
 			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);
@@ -101,23 +93,23 @@ public class DoctorPatientsController implements Initializable {
 	}
 	
 	@FXML
-	private void minWindow(MouseEvent event) {
+	private void minWindow() {
 		Stage stage = (Stage) mainPane.getScene().getWindow();
 		stage.setIconified(true);
 	}
 	
 	@FXML
-	private void closeApp(MouseEvent event) {
+	private void closeApp() {
 		System.exit(0);
 	}
 	
 	// Displays any error returned form the Rest API
-	private void openDialog(String message) {
+	private void openDialog() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
-			Parent root = (Parent) loader.load();
-			DialogPopUpController controler = loader.getController();
-			controler.setMessage(message);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DIALOG_POP_UP_VIEW));
+			Parent root = loader.load();
+			DialogPopUpController controller = loader.getController();
+			controller.setMessage("Failed to connect to the server");
 			Stage stage = new Stage();
 			stage.setHeight(130);
 			stage.setWidth(300);
@@ -127,17 +119,15 @@ public class DoctorPatientsController implements Initializable {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Telelepsia Message");
-			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
+			stage.getIcons().add(new Image(APP_ICON));
 			
-			// Set the pop up in the center of the main menu window
+			// Set the pop-up in the center of the main menu window
 			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);
 			stage.setY(-75 + LogInController.getStage().getY() + LogInController.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
 			AccountObjectCommunication.getAnchorPane().setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
-			stage.setOnHiding(event -> {
-				AccountObjectCommunication.getAnchorPane().setEffect(null);
-			});
+			stage.setOnHiding(event -> AccountObjectCommunication.getAnchorPane().setEffect(null));
 		} catch (IOException error) {
 			error.printStackTrace();
 		}
@@ -147,13 +137,13 @@ public class DoctorPatientsController implements Initializable {
 	 *  --> HTTP requests methods
 	 */
 	
-	// Sends a HTTP request to get all the patients with the assigned doctorId
+	// Sends an HTTP request to get all the patients with the assigned doctorId
 	private void getDoctorPatients() {
 		addPatients.setDisable(true);
 		Thread threadObject = new Thread("GettingDoctorPatients") {
 			public void run() {
 				try {
-					HttpURLConnection connection = (HttpURLConnection) new URL(DoctorParams.BASE_URL + "/listDoctorPatients")
+					HttpURLConnection connection = (HttpURLConnection) new URL(BASE_URL + "/listDoctorPatients")
 							.openConnection();
 					
 					connection.setRequestMethod("POST");
@@ -162,7 +152,7 @@ public class DoctorPatientsController implements Initializable {
 					APIRequest requestAPI = new APIRequest();
 					requestAPI.setDoctorId(AccountObjectCommunication.getDoctor().getDoctorId());
 					
-					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), StandardCharsets.UTF_8);
 					
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -171,7 +161,7 @@ public class DoctorPatientsController implements Initializable {
 					
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -180,21 +170,15 @@ public class DoctorPatientsController implements Initializable {
 					APIResponse responseAPI = gsonConverter.fromJson(response.toString(), APIResponse.class);
 					patientsList = responseAPI.getNoDoctorPatients();
 					
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							loadData();	
-							addPatients.setDisable(false);
-						}
+					Platform.runLater(() -> {
+						loadData();
+						addPatients.setDisable(false);
 					});
 					
 				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							openDialog("Failed to connect to the server");
-							conncetionError.printStackTrace();
-						}
+					Platform.runLater(() -> {
+						openDialog();
+						conncetionError.printStackTrace();
 					});
 				} catch (IOException error) {
 					error.printStackTrace();
@@ -223,57 +207,32 @@ public class DoctorPatientsController implements Initializable {
 		
 		JFXTreeTableColumn<PatientTreeObject, String> patientName = new JFXTreeTableColumn<>("Patient Name");
 		patientName.setPrefWidth(178);
-		patientName.setCellValueFactory(new Callback<JFXTreeTableColumn.CellDataFeatures<PatientTreeObject,String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<PatientTreeObject, String> param) {
-				return param.getValue().getValue().getPatientName();
-			}
-		});
+		patientName.setCellValueFactory(param -> param.getValue().getValue().getPatientName());
 		patientName.setResizable(false);
 
 		JFXTreeTableColumn<PatientTreeObject, String> patientEmail = new JFXTreeTableColumn<>("Patient Email");
 		patientEmail.setPrefWidth(218);
-		patientEmail.setCellValueFactory(new Callback<JFXTreeTableColumn.CellDataFeatures<PatientTreeObject,String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<PatientTreeObject, String> param) {
-				return param.getValue().getValue().getPatientEmail();
-			}
-		});
+		patientEmail.setCellValueFactory(param -> param.getValue().getValue().getPatientEmail());
 		patientEmail.setResizable(false);
 		
 		JFXTreeTableColumn<PatientTreeObject, String> patientIdNumber = new JFXTreeTableColumn<>("Patient ID Number");
 		patientIdNumber.setPrefWidth(178);
-		patientIdNumber.setCellValueFactory(new Callback<JFXTreeTableColumn.CellDataFeatures<PatientTreeObject,String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<PatientTreeObject, String> param) {
-				return param.getValue().getValue().getPatientIdNumber();
-			}
-		});
+		patientIdNumber.setCellValueFactory(param -> param.getValue().getValue().getPatientIdNumber());
 		patientIdNumber.setResizable(false);
 		
 		JFXTreeTableColumn<PatientTreeObject, JFXButton> showRecords = new JFXTreeTableColumn<>("Show patient details");
 		showRecords.setPrefWidth(158);
 		showRecords.setStyle("-fx-alignment: center");
-		showRecords.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PatientTreeObject, JFXButton>, ObservableValue<JFXButton>>() {
-			@Override
-			public ObservableValue<JFXButton> call(CellDataFeatures<PatientTreeObject, JFXButton> param) {
-				return param.getValue().getValue().getShowBITalinoRecords();
-			}
-		});
+		showRecords.setCellValueFactory(param -> param.getValue().getValue().getShowBITalinoRecords());
 		showRecords.setResizable(false);
 		
 		JFXTreeTableColumn<PatientTreeObject, JFXButton> deletePatient = new JFXTreeTableColumn<>("Unassign patient");
 		deletePatient.setPrefWidth(158);
-		deletePatient.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<PatientTreeObject, JFXButton>, ObservableValue<JFXButton>>() {
-			@Override
-			public ObservableValue<JFXButton> call(CellDataFeatures<PatientTreeObject, JFXButton> param) {
-				return param.getValue().getValue().getUnsignPatient();
-			}
-		});
+		deletePatient.setCellValueFactory(param -> param.getValue().getValue().getUnsignedPatient());
 		deletePatient.setResizable(false);
 		deletePatient.setStyle("-fx-alignment: center");
 		
-		TreeItem<PatientTreeObject> root = new RecursiveTreeItem<PatientTreeObject>(patientsObjects, RecursiveTreeObject::getChildren);
+		TreeItem<PatientTreeObject> root = new RecursiveTreeItem<>(patientsObjects, RecursiveTreeObject::getChildren);
 		patientsTreeView.setSelectionModel(null);
 		patientsTreeView.setPlaceholder(new Label("No patients found assigned to this account"));
 		patientsTreeView.getColumns().setAll(Arrays.asList(patientName, patientEmail, patientIdNumber, showRecords, deletePatient));

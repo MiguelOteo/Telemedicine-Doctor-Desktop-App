@@ -9,6 +9,8 @@ import java.net.ConnectException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 import com.google.gson.Gson;
@@ -19,11 +21,9 @@ import com.jfoenix.validation.RequiredFieldValidator;
 
 import doctor.models.APIRequest;
 import doctor.models.APIResponse;
-import doctor.params.DoctorParams;
 import doctor.utility.RegexValidator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -31,13 +31,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import launch.LaunchApp;
+
+import static doctor.params.DoctorParams.*;
 
 public class RegistrationController implements Initializable {
 
@@ -55,8 +56,6 @@ public class RegistrationController implements Initializable {
 	private JFXPasswordField userRepeatPasswordField;
 	@FXML
 	private JFXButton registerButton;
-	@FXML
-	private JFXButton goBackButton;
 
 	// Default constructor
 	public RegistrationController() {}
@@ -95,7 +94,7 @@ public class RegistrationController implements Initializable {
 		RequiredFieldValidator validatorEmpty3 = new RequiredFieldValidator(); 
 		validatorEmpty3.setMessage("User name cannot be empty");
 		userNameField.getValidators().add(validatorEmpty3);
-		userNameField.focusedProperty().addListener((o, oldVal, newVal) ->{
+		userNameField.focusedProperty().addListener((o, oldVal, newVal) -> {
 			if(!newVal) {
 				userNameField.validate();
 			}
@@ -112,8 +111,8 @@ public class RegistrationController implements Initializable {
 
 	public void doRequest(boolean resultEmail, boolean resultName, boolean resultPass, boolean resultPassRep) {
 		
-		if(resultName == true && resultEmail == true && resultPass == true && resultPassRep == true) {
-			resgisterUserRest(userNameField.getText(), userEmailField.getText(), userPasswordField.getText(), 
+		if(resultName && resultEmail && resultPass && resultPassRep) {
+			resisterUserRest(userNameField.getText(), userEmailField.getText(), userPasswordField.getText(),
 					userRepeatPasswordField.getText());
 			registerButton.setDisable(true);
 		}
@@ -121,29 +120,29 @@ public class RegistrationController implements Initializable {
 	
 	// When press it goes back to the logIn pane
 	@FXML
-	private void backToMenu(MouseEvent event) throws IOException {
-		Parent root = FXMLLoader.load(getClass().getResource(DoctorParams.LOG_IN_VIEW));
+	private void backToMenu() throws IOException {
+		Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(LOG_IN_VIEW)));
 		moveWindow(root, LaunchApp.getStage());
 		LaunchApp.getStage().getScene().setRoot(root);
 	}
 
 	@FXML
-	private void closeApp(MouseEvent event) {
+	private void closeApp() {
 		System.exit(0);
 	}
 
 	@FXML
-	private void minWindow(MouseEvent event) {
+	private void minWindow() {
 		Stage stage = (Stage) registrationPane.getScene().getWindow();
 		stage.setIconified(true);
 	}
 
 	private void openErrorDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
-			Parent root = (Parent) loader.load();
-			DialogPopUpController controler = loader.getController();
-			controler.setMessage(message);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DIALOG_POP_UP_VIEW));
+			Parent root = loader.load();
+			DialogPopUpController controller = loader.getController();
+			controller.setMessage(message);
 			Stage stage = new Stage();
 			stage.setHeight(130);
 			stage.setWidth(300);
@@ -153,9 +152,9 @@ public class RegistrationController implements Initializable {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Telelepsia Message");
-			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
+			stage.getIcons().add(new Image(APP_ICON));
 			
-			// Set the pop up in the center of the login window
+			// Set the pop-up in the center of the login window
 			stage.setX(LaunchApp.getStage().getX() + LaunchApp.getStage().getWidth() / 2 - stage.getWidth() / 2);
 			stage.setY(-50 + LaunchApp.getStage().getY() + LaunchApp.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
@@ -172,10 +171,10 @@ public class RegistrationController implements Initializable {
 	
 	private void openAccountCreatedDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
-			Parent root = (Parent) loader.load();
-			DialogPopUpController controler = loader.getController();
-			controler.setMessage(message);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DIALOG_POP_UP_VIEW));
+			Parent root = loader.load();
+			DialogPopUpController controller = loader.getController();
+			controller.setMessage(message);
 			Stage stage = new Stage();
 			stage.setHeight(130);
 			stage.setWidth(300);
@@ -185,9 +184,9 @@ public class RegistrationController implements Initializable {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Telelepsia Message");
-			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
+			stage.getIcons().add(new Image(APP_ICON));
 			
-			// Set the pop up in the center of the login window
+			// Set the pop-up in the center of the login window
 			stage.setX(LaunchApp.getStage().getX() + LaunchApp.getStage().getWidth() / 2 - stage.getWidth() / 2);
 			stage.setY(-50 + LaunchApp.getStage().getY() + LaunchApp.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
@@ -205,7 +204,7 @@ public class RegistrationController implements Initializable {
 
 	private void goBack() {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource(DoctorParams.LOG_IN_VIEW));
+			Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(LOG_IN_VIEW)));
 			LaunchApp.getStage().getScene().setRoot(root);
 			registerButton.setDisable(false);
 		} catch (IOException error) {
@@ -213,13 +212,13 @@ public class RegistrationController implements Initializable {
 		}
 	}
 
-	private void resgisterUserRest(String userName, String userEmail, String userPassword,
-			String userPasswordRepeat) {
+	private void resisterUserRest(String userName, String userEmail, String userPassword,
+								  String userPasswordRepeat) {
 
 		Thread threadObject = new Thread("RegisteringUser") {
 			public void run() {
 				try {
-					HttpURLConnection connection = (HttpURLConnection) new URL(DoctorParams.BASE_URL + "/doctorRegistration")
+					HttpURLConnection connection = (HttpURLConnection) new URL(BASE_URL + "/doctorRegistration")
 							.openConnection();
 					connection.setRequestMethod("POST");
 
@@ -228,7 +227,7 @@ public class RegistrationController implements Initializable {
 					if(!userEmail.equals("")) {requestAPI.setUserEmail(userEmail);}
 					if(!userPassword.equals("")) {requestAPI.setUserPassword(userPassword);}
 					if(!userPasswordRepeat.equals("")) {requestAPI.setUserPasswordRepeat(userPasswordRepeat);}
-					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), StandardCharsets.UTF_8);
 					
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -237,7 +236,7 @@ public class RegistrationController implements Initializable {
 
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -245,29 +244,16 @@ public class RegistrationController implements Initializable {
 					APIResponse responseAPI = new Gson().fromJson(response.toString(), APIResponse.class);
 
 					if (responseAPI.isError()) {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								openErrorDialog(responseAPI.getAPImessage());
-								userPasswordField.setText("");
-								userRepeatPasswordField.setText("");
-							}
+						Platform.runLater(() -> {
+							openErrorDialog(responseAPI.getAPImessage());
+							userPasswordField.setText("");
+							userRepeatPasswordField.setText("");
 						});
 					} else {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								openAccountCreatedDialog(responseAPI.getAPImessage());
-							}
-						});
+						Platform.runLater(() -> openAccountCreatedDialog(responseAPI.getAPImessage()));
 					}
 				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							openErrorDialog("Failed to connect to the server");
-						}
-					});
+					Platform.runLater(() -> openErrorDialog("Failed to connect to the server"));
 				} catch (IOException error) {
 					error.printStackTrace();
 				}
@@ -278,28 +264,17 @@ public class RegistrationController implements Initializable {
 	
 	public void moveWindow(Parent root, Stage stage) {
 		
-		root.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				xOffset = event.getSceneX();
-				yOffset = event.getSceneY();
-			}
+		root.setOnMousePressed(event -> {
+			xOffset = event.getSceneX();
+			yOffset = event.getSceneY();
 		});
 		
-		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				stage.setOpacity(0.8);
-				stage.setX(event.getScreenX() - xOffset);
-				stage.setY(event.getScreenY() - yOffset);
-			}
+		root.setOnMouseDragged(event -> {
+			stage.setOpacity(0.8);
+			stage.setX(event.getScreenX() - xOffset);
+			stage.setY(event.getScreenY() - yOffset);
 		});
 		
-		root.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				stage.setOpacity(1);
-			}
-		});
+		root.setOnMouseReleased(event -> stage.setOpacity(1));
 	}
 }

@@ -1,7 +1,7 @@
 package doctor.models;
 
 public class User {
-	
+
 	// User parameters
 	private int userId;
 	private String userName;
@@ -25,23 +25,43 @@ public class User {
 	}
 
 	// Getter and Setter methods
-	public int getUserId() {return userId;}
+	public int getUserId() {
+		return userId;
+	}
 
-	public void setUserId(int userId) {this.userId = userId;}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-	public String getName() {return userName;}
+	public String getName() {
+		return userName;
+	}
 
-	public void setName(String name) {this.userName = name;}
+	public void setName(String name) {
+		this.userName = name;
+	}
 
-	public String getEmail() {return userEmail;}
+	public String getEmail() {
+		return userEmail;
+	}
 
-	public void setEmail(String email) {this.userEmail = email;}
+	public void setEmail(String email) {
+		this.userEmail = email;
+	}
 
-	public String getEncryptedPassword() {return userPassword;}
+	public String getEncryptedPassword() {
+		return userPassword;
+	}
 
-	public void setEncryptedPassword(String password) {this.userPassword = password;}
+	public void setEncryptedPassword(String password) {
+		this.userPassword = password;
+	}
 
-	public String getUserSalt() {return userSalt;}
+	public String getUserSalt() {
+		return userSalt;
+	}
 
-	public void setUserSalt(String userSalt) {this.userSalt = userSalt;}
+	public void setUserSalt(String userSalt) {
+		this.userSalt = userSalt;
+	}
 }

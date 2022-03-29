@@ -11,10 +11,10 @@ import javafx.scene.paint.Color;
 
 public class AddPatientTreeObject extends RecursiveTreeObject<AddPatientTreeObject> {
 
-	private int patientId;
-	private StringProperty patientName;
-	private StringProperty patientIdNumber;
-	private ObjectProperty<JFXCheckBox> selectedPatient;
+	private final int patientId;
+	private final StringProperty patientName;
+	private final StringProperty patientIdNumber;
+	private final ObjectProperty<JFXCheckBox> selectedPatient;
 	
 	public AddPatientTreeObject(int patientId, String patientName, String patientIdNumber) {
 		this.patientId = patientId;
@@ -22,7 +22,7 @@ public class AddPatientTreeObject extends RecursiveTreeObject<AddPatientTreeObje
 		this.patientIdNumber = new SimpleStringProperty(patientIdNumber);
 		JFXCheckBox checkBox = new JFXCheckBox();
 		checkBox.setCheckedColor(Color.web("#009d73",1.0));
-		this.selectedPatient = new SimpleObjectProperty<JFXCheckBox>(checkBox);	
+		this.selectedPatient = new SimpleObjectProperty<>(checkBox);
 	}
 
 	public int getPatientId() {return patientId;}

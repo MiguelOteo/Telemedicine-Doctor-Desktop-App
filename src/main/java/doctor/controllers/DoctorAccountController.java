@@ -1,22 +1,10 @@
 package doctor.controllers;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ResourceBundle;
-
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
-
 import doctor.communication.AccountObjectCommunication;
 import doctor.models.APIRequest;
 import doctor.models.APIResponse;
@@ -32,12 +20,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+
+import java.io.*;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ResourceBundle;
 
 public class DoctorAccountController implements Initializable {
 
@@ -124,18 +119,18 @@ public class DoctorAccountController implements Initializable {
 
 		boolean resultNew = userNewPassword.validate();
 		boolean resultOld = userOldPassword.validate();
-		if(resultNew == true && resultOld == true) {
+		if(resultNew && resultOld) {
 			changePasswordRequest();
 		}
 	}
 	
 	@FXML
-	private void closeApp(MouseEvent event) {
+	private void closeApp() {
 		System.exit(0);
 	}
 
 	@FXML
-	private void minWindow(MouseEvent event) {
+	private void minWindow() {
 		Stage stage = (Stage) mainPane.getScene().getWindow();
 		stage.setIconified(true);
 	}
@@ -144,9 +139,9 @@ public class DoctorAccountController implements Initializable {
 	private void openDialog(String message) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
-			Parent root = (Parent) loader.load();
-			DialogPopUpController controler = loader.getController();
-			controler.setMessage(message);
+			Parent root = loader.load();
+			DialogPopUpController controller = loader.getController();
+			controller.setMessage(message);
 			Stage stage = new Stage();
 			stage.setHeight(130);
 			stage.setWidth(300);
@@ -158,15 +153,13 @@ public class DoctorAccountController implements Initializable {
 			stage.setTitle("Telelepsia Message");
 			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
 			
-			// Set the pop up in the center of the main menu window
+			// Set the pop-up in the center of the main menu window
 			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);
 			stage.setY(-75 + LogInController.getStage().getY() + LogInController.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
 			AccountObjectCommunication.getAnchorPane().setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
-			stage.setOnHiding(event -> {
-				AccountObjectCommunication.getAnchorPane().setEffect(null);
-			});
+			stage.setOnHiding(event -> AccountObjectCommunication.getAnchorPane().setEffect(null));
 		} catch (IOException error) {
 			error.printStackTrace();
 		}
@@ -194,7 +187,7 @@ public class DoctorAccountController implements Initializable {
 						if(!userName.equals("")) {requestAPI.setUserName(userName);}
 					}
 					
-					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), StandardCharsets.UTF_8);
 					
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -203,7 +196,7 @@ public class DoctorAccountController implements Initializable {
 
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -212,40 +205,31 @@ public class DoctorAccountController implements Initializable {
 					
 					if(!responseAPI.isError()) {	
 						
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								if(emailUpdate) {
-									AccountObjectCommunication.getDoctor().setEmail(responseAPI.getUserEmail());
-									userEmailLabel.setText("Doctor Email: " + responseAPI.getUserEmail());
-									userEmailField.setText("");
-								} else {
-									AccountObjectCommunication.getDoctor().setName(responseAPI.getUserName());
-									userNameLabel.setText("Name: " +responseAPI.getUserName());
-									userNameField.setText("");
-								}
-								openDialog(responseAPI.getAPImessage());
+						Platform.runLater(() -> {
+							if(emailUpdate) {
+								AccountObjectCommunication.getDoctor().setEmail(responseAPI.getUserEmail());
+								userEmailLabel.setText("Doctor Email: " + responseAPI.getUserEmail());
+								userEmailField.setText("");
+							} else {
+								AccountObjectCommunication.getDoctor().setName(responseAPI.getUserName());
+								userNameLabel.setText("Name: " +responseAPI.getUserName());
+								userNameField.setText("");
 							}
+							openDialog(responseAPI.getAPImessage());
 						});
 					} else {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								openDialog(responseAPI.getAPImessage());
-								userNameField.setText("");
-								userEmailField.setText("");
-							}
+						Platform.runLater(() -> {
+							openDialog(responseAPI.getAPImessage());
+							userNameField.setText("");
+							userEmailField.setText("");
 						});
 					}
 					
-				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							openDialog("Failed to connect to the server");
-							userNameField.setText("");
-							userEmailField.setText("");
-						}
+				} catch (ConnectException | FileNotFoundException connectionError) {
+					Platform.runLater(() -> {
+						openDialog("Failed to connect to the server");
+						userNameField.setText("");
+						userEmailField.setText("");
 					});
 				} catch (IOException error) {
 					error.printStackTrace();
@@ -271,7 +255,7 @@ public class DoctorAccountController implements Initializable {
 					if(!userOldPasswordString.equals("")) {requestAPI.setUserPassword(userOldPasswordString);}
 					if(!userNewPasswordString.equals("")) {requestAPI.setUserNewPassword(userNewPasswordString);}
 					
-					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), StandardCharsets.UTF_8);
 					
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -280,7 +264,7 @@ public class DoctorAccountController implements Initializable {
 
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -289,32 +273,23 @@ public class DoctorAccountController implements Initializable {
 					
 					if(!responseAPI.isError()) {	
 						AccountObjectCommunication.getDoctor().setEncryptedPassword(responseAPI.getEncryptedPassword());
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								openDialog(responseAPI.getAPImessage());
-								userNewPassword.setText("");
-								userOldPassword.setText("");
-							}
-						});
-					} else {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								openDialog(responseAPI.getAPImessage());
-								userNewPassword.setText("");
-								userOldPassword.setText("");
-							}
-						});
-					}
-				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							openDialog("Failed to connect to the server");
+						Platform.runLater(() -> {
+							openDialog(responseAPI.getAPImessage());
 							userNewPassword.setText("");
 							userOldPassword.setText("");
-						}
+						});
+					} else {
+						Platform.runLater(() -> {
+							openDialog(responseAPI.getAPImessage());
+							userNewPassword.setText("");
+							userOldPassword.setText("");
+						});
+					}
+				} catch (ConnectException | FileNotFoundException connectionError) {
+					Platform.runLater(() -> {
+						openDialog("Failed to connect to the server");
+						userNewPassword.setText("");
+						userOldPassword.setText("");
 					});
 				} catch (IOException error) {
 					error.printStackTrace();

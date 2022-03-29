@@ -13,11 +13,11 @@ import javafx.scene.layout.Pane;
 public class MessagePatientTreeObject extends RecursiveTreeObject<MessagePatientTreeObject> {
 
 	//private Pane mainPane;
-	private int patientId;
+	private final int patientId;
 	
-	private StringProperty patientName;
-	private StringProperty patientEmail;
-	private ObjectProperty<JFXButton> messagePatient;
+	private final StringProperty patientName;
+	private final StringProperty patientEmail;
+	private final ObjectProperty<JFXButton> messagePatient;
 	
 	public MessagePatientTreeObject(int patientId, String patientName, String patientEmail, Pane pane) {
 		
@@ -29,11 +29,9 @@ public class MessagePatientTreeObject extends RecursiveTreeObject<MessagePatient
 		
 		JFXButton messageButton = new JFXButton("Message");
 		messageButton.getStyleClass().add("tree_table_button");
-		messageButton.setOnAction((ActionEvent event) -> {
-			openMessagePatient();
-		});
+		messageButton.setOnAction((ActionEvent event) -> openMessagePatient());
 		
-		this.messagePatient = new SimpleObjectProperty<JFXButton>(messageButton);
+		this.messagePatient = new SimpleObjectProperty<>(messageButton);
 	}
 	
 	private void openMessagePatient() {

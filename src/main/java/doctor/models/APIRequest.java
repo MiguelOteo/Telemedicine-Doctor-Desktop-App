@@ -3,7 +3,6 @@ package doctor.models;
 import java.sql.Timestamp;
 import java.util.List;
 
-
 public class APIRequest {
 
 	private int userId;
@@ -13,7 +12,7 @@ public class APIRequest {
 	private String userPassword;
 	private String userPasswordRepeat;
 	private String userNewPassword;
-	
+
 	private int doctorId;
 	private int patientId;
 	private float patientWeight;
@@ -22,72 +21,137 @@ public class APIRequest {
 	private String doctorIdentification;
 	private String patientIdNumber;
 	private BitalinoPackage bitalinopackage;
-	
+
 	private List<Integer> selectedPatients;
-	
-	public APIRequest() {}
 
-	public List<Integer> getSelectedPatients() {return selectedPatients;}
+	public APIRequest() {
+	}
 
-	public void setSelectedPatients(List<Integer> selectedPatients) {this.selectedPatients = selectedPatients;}
+	public List<Integer> getSelectedPatients() {
+		return selectedPatients;
+	}
 
-	public int getDoctorId() {return doctorId;}
+	public void setSelectedPatients(List<Integer> selectedPatients) {
+		this.selectedPatients = selectedPatients;
+	}
 
-	public void setDoctorId(int doctorId) {this.doctorId = doctorId;}
+	public int getDoctorId() {
+		return doctorId;
+	}
 
-	public String getUserType() {return userType;}
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
+	}
 
-	public void setUserType(String userType) {this.userType = userType;}
+	public String getUserType() {
+		return userType;
+	}
 
-	public String getUserName() {return userName;}
+	public void setUserType(String userType) {
+		this.userType = userType;
+	}
 
-	public void setUserName(String userName) {this.userName = userName;}
+	public String getUserName() {
+		return userName;
+	}
 
-	public String getUserEmail() {return userEmail;}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-	public void setUserEmail(String userEmail) {this.userEmail = userEmail;}
+	public String getUserEmail() {
+		return userEmail;
+	}
 
-	public String getUserPassword() {return userPassword;}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
 
-	public void setUserPassword(String userPassword) {this.userPassword = userPassword;}
+	public String getUserPassword() {
+		return userPassword;
+	}
 
-	public String getUserPasswordRepeat() {return userPasswordRepeat;}
+	public void setUserPassword(String userPassword) {
+		this.userPassword = userPassword;
+	}
 
-	public void setUserPasswordRepeat(String userPasswordRepeat) {this.userPasswordRepeat = userPasswordRepeat;}
+	public String getUserPasswordRepeat() {
+		return userPasswordRepeat;
+	}
 
-	public int getPatientId() {return patientId;}
+	public void setUserPasswordRepeat(String userPasswordRepeat) {
+		this.userPasswordRepeat = userPasswordRepeat;
+	}
 
-	public void setPatientId(int patientId) {this.patientId = patientId;}
+	public int getPatientId() {
+		return patientId;
+	}
 
-	public String getDoctorIdentification() {return doctorIdentification;}
+	public void setPatientId(int patientId) {
+		this.patientId = patientId;
+	}
 
-	public void setDoctorIdentification(String doctorIdentification) {this.doctorIdentification = doctorIdentification;}
+	public String getDoctorIdentification() {
+		return doctorIdentification;
+	}
 
-	public String getPatientIdNumber() {return patientIdNumber;}
+	public void setDoctorIdentification(String doctorIdentification) {
+		this.doctorIdentification = doctorIdentification;
+	}
 
-	public void setPatientIdNumber(String patientIdNumber) {this.patientIdNumber = patientIdNumber;}
+	public String getPatientIdNumber() {
+		return patientIdNumber;
+	}
 
-	public String getUserNewPassword() {return userNewPassword;}
+	public void setPatientIdNumber(String patientIdNumber) {
+		this.patientIdNumber = patientIdNumber;
+	}
 
-	public void setUserNewPassword(String userNewPassword) {this.userNewPassword = userNewPassword;}
+	public String getUserNewPassword() {
+		return userNewPassword;
+	}
 
-	public int getUserId() {return userId;}
+	public void setUserNewPassword(String userNewPassword) {
+		this.userNewPassword = userNewPassword;
+	}
 
-	public void setUserId(int userId) {this.userId = userId;}
+	public int getUserId() {
+		return userId;
+	}
 
-	public Timestamp getDate() {return date;}
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
-	public void setDate(Timestamp date) {this.date = date;}
+	public Timestamp getDate() {
+		return date;
+	}
 
-	public BitalinoPackage getBitalinopackage() {return bitalinopackage;}
+	public void setDate(Timestamp date) {
+		this.date = date;
+	}
 
-	public void setBitalinopackage(BitalinoPackage bitalinopackage) {this.bitalinopackage = bitalinopackage;}
+	public BitalinoPackage getBitalinoPackage() {
+		return bitalinopackage;
+	}
 
-	public float getPatientWeight() {return patientWeight;}
+	public void setBitalinoPackage(BitalinoPackage bitalinopackage) {
+		this.bitalinopackage = bitalinopackage;
+	}
 
-	public void setPatientWeight(float patientWeight) {this.patientWeight = patientWeight;}
+	public float getPatientWeight() {
+		return patientWeight;
+	}
 
-	public float getPatientHeight() {return patientHeight;}
+	public void setPatientWeight(float patientWeight) {
+		this.patientWeight = patientWeight;
+	}
 
-	public void setPatientHeight(float patientHeight) {this.patientHeight = patientHeight;	}		
+	public float getPatientHeight() {
+		return patientHeight;
+	}
+
+	public void setPatientHeight(float patientHeight) {
+		this.patientHeight = patientHeight;
+	}
 }

@@ -6,7 +6,7 @@ public class Doctor extends User {
 
 	private int doctorId;
 	
-	// Id of the doctor (Documentation)
+	// ID of the doctor (Documentation)
 	private String doctorIdentification;
 	
 	//List of the patients the doctor looks after
@@ -46,4 +46,3 @@ public class Doctor extends User {
 
 	public void setListOfPatients(List<Patient> listOfPatients) {this.listOfPatients = listOfPatients;}
 }
-	

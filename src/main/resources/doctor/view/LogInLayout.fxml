@@ -53,7 +53,7 @@
                   <Image url="@../../icons/logo.png" />
                </image>
             </ImageView>
-            <JFXButton fx:id="signUpButton" layoutX="145.0" layoutY="521.0" onMouseClicked="#openRegistration" prefHeight="38.0" prefWidth="130.0" styleClass="starter_small_buttom" text="Sign Up" textFill="#00000098">
+            <JFXButton layoutX="145.0" layoutY="521.0" onMouseClicked="#openRegistration" prefHeight="38.0" prefWidth="130.0" styleClass="starter_small_buttom" text="Sign Up" textFill="#00000098">
                <font>
                   <Font name="Ebrima" size="14.0" />
                </font>

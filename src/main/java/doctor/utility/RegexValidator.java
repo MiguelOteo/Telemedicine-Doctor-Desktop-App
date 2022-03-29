@@ -33,11 +33,7 @@ public class RegexValidator extends ValidatorBase {
         TextInputControl textField = (TextInputControl) srcControl.get();
         String text = (textField.getText() == null) ? "" : textField.getText(); // Treat null like empty string
 
-        if (regexPatternCompiled.matcher(text).matches()) {
-            hasErrors.set(false);
-        } else {
-            hasErrors.set(true);
-        }
+        hasErrors.set(!regexPatternCompiled.matcher(text).matches());
     }
 
     public void setRegexPattern(String regexPattern) {

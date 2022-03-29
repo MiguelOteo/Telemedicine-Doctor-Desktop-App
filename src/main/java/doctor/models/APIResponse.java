@@ -3,12 +3,12 @@ package doctor.models;
 import java.util.List;
 
 public class APIResponse {
-	
+
 	// Tell if response is an error or not
 	private boolean error;
-	
+
 	// API response if error is false
-	private int APIresponseId;
+	private int APIResponseId;
 	private Doctor doctor;
 	private Patient patient;
 	private List<BitalinoPackage> dayRecords;
@@ -18,69 +18,118 @@ public class APIResponse {
 	private String userEmail;
 	private float patientWeight;
 	private float patientHeight;
-	
+
 	// Return the API message (Error message if error boolean is true)
 	private String APImessage;
-	
-	// Default constructor
-	public APIResponse() {}
-	
+
 	// Constructor
-	public APIResponse(int APIresponseId, boolean error, Doctor doctor, Patient patient, String errorMsg, List<Patient> noDoctorPatients) {
+	public APIResponse(int APIResponseId, boolean error, Doctor doctor, Patient patient, String errorMsg,
+			List<Patient> noDoctorPatients) {
 		this.error = error;
-		this.APIresponseId = APIresponseId;
+		this.APIResponseId = APIResponseId;
 		this.doctor = doctor;
 		this.patient = patient;
 		this.APImessage = errorMsg;
 		this.noDoctorPatients = noDoctorPatients;
 	}
+	
+	//Default Constructor
+	public APIResponse() {}
 
 	// Getter and Setter methods
-	public boolean isError() {return error;}
+	public boolean isError() {
+		return error;
+	}
 
-	public void setError(boolean error) {this.error = error;}
+	public void setError(boolean error) {
+		this.error = error;
+	}
 
-	public int getAPIresponseId() {return APIresponseId;}
+	public int getAPIResponseId() {
+		return APIResponseId;
+	}
 
-	public void setAPIresponseId(int APIresponseId) {this.APIresponseId = APIresponseId;}
+	public void setAPIResponseId(int APIResponseId) {
+		this.APIResponseId = APIResponseId;
+	}
 
-	public Doctor getDoctor() {return doctor;}
+	public Doctor getDoctor() {
+		return doctor;
+	}
 
-	public void setDoctor(Doctor doctor) {this.doctor =doctor;}
-	
-	public Patient getPatient() {return patient;}
+	public void setDoctor(Doctor doctor) {
+		this.doctor = doctor;
+	}
 
-	public void setPatient(Patient patient) {this.patient = patient;}
+	public Patient getPatient() {
+		return patient;
+	}
 
-	public String getAPImessage() {return APImessage;}
+	public void setPatient(Patient patient) {
+		this.patient = patient;
+	}
 
-	public void setAPImessage(String APImessage) {this.APImessage = APImessage;}
+	public String getAPImessage() {
+		return APImessage;
+	}
 
-	public List<Patient> getNoDoctorPatients() {return noDoctorPatients;}
+	public void setAPImessage(String APImessage) {
+		this.APImessage = APImessage;
+	}
 
-	public void setNoDoctorPatients(List<Patient> noDoctorPatients) {this.noDoctorPatients = noDoctorPatients;}
+	public List<Patient> getNoDoctorPatients() {
+		return noDoctorPatients;
+	}
 
-	public String getEncryptedPassword() {return encryptedPassword;}
+	public void setNoDoctorPatients(List<Patient> noDoctorPatients) {
+		this.noDoctorPatients = noDoctorPatients;
+	}
 
-	public void setEncryptedPassword(String encryptedPassword) {this.encryptedPassword = encryptedPassword;}
+	public String getEncryptedPassword() {
+		return encryptedPassword;
+	}
 
-	public String getUserName() {return userName;}
+	public void setEncryptedPassword(String encryptedPassword) {
+		this.encryptedPassword = encryptedPassword;
+	}
 
-	public void setUserName(String userName) {this.userName = userName;}
+	public String getUserName() {
+		return userName;
+	}
 
-	public String getUserEmail() {return userEmail;}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-	public void setUserEmail(String userEmail) {this.userEmail = userEmail;}
+	public String getUserEmail() {
+		return userEmail;
+	}
 
-	public List<BitalinoPackage> getDayRecords() {return dayRecords;}
+	public void setUserEmail(String userEmail) {
+		this.userEmail = userEmail;
+	}
 
-	public void setDayRecords(List<BitalinoPackage> dayRecords) {this.dayRecords = dayRecords;}
+	public List<BitalinoPackage> getDayRecords() {
+		return dayRecords;
+	}
 
-	public float getPatientWeight() {return patientWeight;}
+	public void setDayRecords(List<BitalinoPackage> dayRecords) {
+		this.dayRecords = dayRecords;
+	}
 
-	public void setPatientWeight(float patientWeight) {this.patientWeight = patientWeight;}
+	public float getPatientWeight() {
+		return patientWeight;
+	}
 
-	public float getPatientHeight() {return patientHeight;}
+	public void setPatientWeight(float patientWeight) {
+		this.patientWeight = patientWeight;
+	}
 
-	public void setPatientHeight(float patientHeight) {this.patientHeight = patientHeight;}	
+	public float getPatientHeight() {
+		return patientHeight;
+	}
+
+	public void setPatientHeight(float patientHeight) {
+		this.patientHeight = patientHeight;
+	}
 }

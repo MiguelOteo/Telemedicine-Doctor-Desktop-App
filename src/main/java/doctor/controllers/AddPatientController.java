@@ -1,27 +1,8 @@
 package doctor.controllers;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.ResourceBundle;
-
 import com.google.gson.Gson;
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXCheckBox;
-import com.jfoenix.controls.JFXTreeTableColumn;
-import com.jfoenix.controls.JFXTreeTableView;
-import com.jfoenix.controls.RecursiveTreeItem;
+import com.jfoenix.controls.*;
 import com.jfoenix.controls.datamodels.treetable.RecursiveTreeObject;
-
 import doctor.communication.AccountObjectCommunication;
 import doctor.models.APIRequest;
 import doctor.models.APIResponse;
@@ -29,7 +10,6 @@ import doctor.models.Patient;
 import doctor.params.DoctorParams;
 import doctor.treeobjects.AddPatientTreeObject;
 import javafx.application.Platform;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,17 +19,24 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
-import javafx.scene.control.TreeTableColumn;
-import javafx.scene.control.TreeTableColumn.CellDataFeatures;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
+
+import java.io.*;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class AddPatientController implements Initializable {
 
@@ -65,11 +52,11 @@ public class AddPatientController implements Initializable {
 	private final ObservableList<AddPatientTreeObject> patientsObjects = FXCollections.observableArrayList();
 	
 	// Stores the selected patients' ID when button "addSelected" is pressed
-	private List<Integer> selectedPatients = new ArrayList<Integer>();
+	private final List<Integer> selectedPatients = new ArrayList<>();
 	
 	// Stores all the APIResponse patients
 	private List<Patient> patientsList;
-	
+
 	@Override 
 	public void initialize(URL location, ResourceBundle resources) {		
 		addSelectedPatients.setDisable(true);
@@ -78,32 +65,32 @@ public class AddPatientController implements Initializable {
 	}
 	
 	@FXML
-	private void cancelOperation(MouseEvent event) throws IOException {
+	private void cancelOperation() {
 		Stage stage = (Stage) cancelOperation.getScene().getWindow();
 		stage.close();
 	}
 	
 	@FXML
-	private void addPatients(MouseEvent event) {
+	private void addPatients() {
 		
 		for(AddPatientTreeObject patientObject: patientsObjects) {
-			if(patientObject.getSelectedPatient().getValue().isSelected() == true) {
+			if(patientObject.getSelectedPatient().getValue().isSelected()) {
 				selectedPatients.add(patientObject.getPatientId());
 			}
 		}
 		
 		if(!patientsList.isEmpty()) {
-			addPatients();
+			addPatientsRequest();
 		}
 	}
 	
 	// Displays any error returned form the Rest API
-	private void openDialog(String message) {
+	private void openDialog() {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
-			Parent root = (Parent) loader.load();
-			DialogPopUpController controler = loader.getController();
-			controler.setMessage(message);
+			Parent root = loader.load();
+			DialogPopUpController controller = loader.getController();
+			controller.setMessage("Failed to connect to the server");
 			Stage stage = new Stage();
 			stage.setHeight(130);
 			stage.setWidth(300);
@@ -115,26 +102,24 @@ public class AddPatientController implements Initializable {
 			stage.setTitle("Telelepsia Message");
 			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
 			
-			// Set the pop up in the center of the main menu window
+			// Set the pop-up in the center of the main menu window
 			stage.setX(LogInController.getStage().getX() + LogInController.getStage().getWidth() / 2 - stage.getWidth() / 2);
 			stage.setY(-75 + LogInController.getStage().getY() + LogInController.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
 			anchorPane.setEffect(new BoxBlur(4, 4, 4));
 			stage.show();
-			stage.setOnHiding(event -> {
-				anchorPane.setEffect(null);
-			});
+			stage.setOnHiding(event -> anchorPane.setEffect(null));
 		} catch (IOException error) {
 			error.printStackTrace();
 		}
 	}
-	
+
 	/*
 	 *  --> HTTP requests methods
 	 */
 	
-	// Sends a HTTP request to all selected patients and returns a new list of patients without a assigned doctor
-	private void addPatients() {
+	// Sends an HTTP request to all selected patients and returns a new list of patients without a assigned doctor
+	private void addPatientsRequest() {
 		Thread threadObject = new Thread("AddingPatients") {
 			public void run() {
 				try {
@@ -148,7 +133,7 @@ public class AddPatientController implements Initializable {
 					requestAPI.setDoctorId(AccountObjectCommunication.getDoctor().getDoctorId());
 					requestAPI.setSelectedPatients(selectedPatients);
 					
-					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), StandardCharsets.UTF_8);
 					
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -157,7 +142,7 @@ public class AddPatientController implements Initializable {
 					
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -166,23 +151,17 @@ public class AddPatientController implements Initializable {
 					APIResponse responseAPI = gsonConverter.fromJson(response.toString(), APIResponse.class);
 					patientsList = responseAPI.getNoDoctorPatients();
 					
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							loadData();
-							selectedPatients.clear();
-						}
+					Platform.runLater(() -> {
+						loadData();
+						selectedPatients.clear();
 					});
 					
-				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							conncetionError.printStackTrace();
-							openDialog("Failed to connect to the server");
-							selectedPatients.clear();
-							addSelectedPatients.setDisable(true);
-						}
+				} catch (ConnectException | FileNotFoundException connectionError) {
+					Platform.runLater(() -> {
+						connectionError.printStackTrace();
+						openDialog();
+						selectedPatients.clear();
+						addSelectedPatients.setDisable(true);
 					});
 				} catch (IOException error) {
 					error.printStackTrace();
@@ -208,7 +187,7 @@ public class AddPatientController implements Initializable {
 					APIRequest requestAPI = new APIRequest();
 					requestAPI.setDoctorId(AccountObjectCommunication.getDoctor().getDoctorId());
 					
-					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(gsonConverter.toJson(requestAPI), StandardCharsets.UTF_8);
 
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -217,7 +196,7 @@ public class AddPatientController implements Initializable {
 					
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -226,22 +205,16 @@ public class AddPatientController implements Initializable {
 					APIResponse responseAPI = gsonConverter.fromJson(response.toString(), APIResponse.class);
 					patientsList = responseAPI.getNoDoctorPatients();
 					
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							loadData();
-							addSelectedPatients.setDisable(false);
-						}
+					Platform.runLater(() -> {
+						loadData();
+						addSelectedPatients.setDisable(false);
 					});
 					
-				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							conncetionError.printStackTrace();
-							openDialog("Failed to connect to the server");
-							addSelectedPatients.setDisable(true);
-						}
+				} catch (ConnectException | FileNotFoundException connectionError) {
+					Platform.runLater(() -> {
+						connectionError.printStackTrace();
+						openDialog();
+						addSelectedPatients.setDisable(true);
 					});
 				} catch (IOException error) {
 					error.printStackTrace();
@@ -270,35 +243,20 @@ public class AddPatientController implements Initializable {
 
 		JFXTreeTableColumn<AddPatientTreeObject, String> patientName = new JFXTreeTableColumn<>("Patient Name");
 		patientName.setPrefWidth(158);
-		patientName.setCellValueFactory(new Callback<JFXTreeTableColumn.CellDataFeatures<AddPatientTreeObject,String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<AddPatientTreeObject, String> param) {
-				return param.getValue().getValue().getPatientName();
-			}
-		});
+		patientName.setCellValueFactory(param -> param.getValue().getValue().getPatientName());
 		patientName.setResizable(false);
 		
 		JFXTreeTableColumn<AddPatientTreeObject, String> patientIdNumber = new JFXTreeTableColumn<>("Patient ID Number");
 		patientIdNumber.setPrefWidth(158);
-		patientIdNumber.setCellValueFactory(new Callback<JFXTreeTableColumn.CellDataFeatures<AddPatientTreeObject,String>, ObservableValue<String>>() {
-			@Override
-			public ObservableValue<String> call(CellDataFeatures<AddPatientTreeObject, String> param) {
-				return param.getValue().getValue().getPatientIdNumber();
-			}
-		});
+		patientIdNumber.setCellValueFactory(param -> param.getValue().getValue().getPatientIdNumber());
 		patientIdNumber.setResizable(false);
 		
 		JFXTreeTableColumn<AddPatientTreeObject, JFXCheckBox> selectedPatients = new JFXTreeTableColumn<>("Select");
 		selectedPatients.setPrefWidth(138);
-		selectedPatients.setCellValueFactory(new Callback<TreeTableColumn.CellDataFeatures<AddPatientTreeObject, JFXCheckBox>, ObservableValue<JFXCheckBox>>() {
-			@Override
-			public ObservableValue<JFXCheckBox> call(CellDataFeatures<AddPatientTreeObject, JFXCheckBox> param) {
-				return param.getValue().getValue().getSelectedPatient();
-			}
-		});
+		selectedPatients.setCellValueFactory(param -> param.getValue().getValue().getSelectedPatient());
 		selectedPatients.setResizable(false);
 		
-		TreeItem<AddPatientTreeObject> root = new RecursiveTreeItem<AddPatientTreeObject>(patientsObjects, RecursiveTreeObject::getChildren);
+		TreeItem<AddPatientTreeObject> root = new RecursiveTreeItem<>(patientsObjects, RecursiveTreeObject::getChildren);
 		patientsTreeView.setSelectionModel(null);
 		patientsTreeView.setPlaceholder(new Label("No patients found without an assigned doctor"));
 		patientsTreeView.getColumns().setAll(Arrays.asList(patientName, patientIdNumber, selectedPatients));

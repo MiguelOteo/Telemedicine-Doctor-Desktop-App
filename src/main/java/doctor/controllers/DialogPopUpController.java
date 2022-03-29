@@ -1,16 +1,13 @@
 package doctor.controllers;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import com.jfoenix.controls.JFXButton;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class DialogPopUpController implements Initializable {
 
@@ -23,7 +20,7 @@ public class DialogPopUpController implements Initializable {
 	public void initialize(URL arg0, ResourceBundle arg1) {}
 
 	@FXML
-	private void close_dialog(MouseEvent event) throws IOException {
+	private void close_dialog() {
 		Stage stage = (Stage) closeDialog.getScene().getWindow();
 		stage.close();
 	}

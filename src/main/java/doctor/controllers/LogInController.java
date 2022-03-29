@@ -1,30 +1,16 @@
 package doctor.controllers;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
-import java.net.ConnectException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ResourceBundle;
-
 import com.google.gson.Gson;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.validation.RequiredFieldValidator;
-
 import doctor.communication.AccountObjectCommunication;
 import doctor.models.APIRequest;
 import doctor.models.APIResponse;
-import doctor.params.DoctorParams;
 import doctor.utility.RegexValidator;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -32,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.image.Image;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -40,6 +25,17 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import launch.LaunchApp;
+
+import java.io.*;
+import java.net.ConnectException;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.Objects;
+import java.util.ResourceBundle;
+
+import static doctor.params.DoctorParams.*;
 
 public class LogInController implements Initializable {
 
@@ -54,8 +50,6 @@ public class LogInController implements Initializable {
 	private Pane logInPane;
 	@FXML
 	private JFXButton logInButton;
-	@FXML
-	private JFXButton signUpButton;
 	@FXML
 	private JFXTextField userEmailField;
 	@FXML
@@ -99,7 +93,7 @@ public class LogInController implements Initializable {
 	
 	public void doRequest(boolean resultEmail, boolean resultPass) {
 		
-		if(resultEmail == true && resultPass == true) {
+		if(resultEmail && resultPass) {
 			loginUserRest(userEmailField.getText(), userPasswordField.getText());
 			logInButton.setDisable(true);
 		}
@@ -107,19 +101,19 @@ public class LogInController implements Initializable {
 
 	// Replace the login pane with the registration one
 	@FXML
-	private void openRegistration(MouseEvent event) throws IOException {
-		Pane registrationPane = FXMLLoader.load(getClass().getResource(DoctorParams.REGISTRATION_VIEW));
+	private void openRegistration() throws IOException {
+		Pane registrationPane = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(REGISTRATION_VIEW)));
 		anchorPane.getChildren().remove(logInPane);
 		anchorPane.getChildren().setAll(registrationPane);
 	}
 
 	@FXML
-	private void closeApp(MouseEvent event) throws IOException {
+	private void closeApp() {
 		System.exit(0);
 	}
 
 	@FXML
-	private void minWindow(MouseEvent event) {
+	private void minWindow() {
 		Stage stage = (Stage) logInPane.getScene().getWindow();
 		stage.setIconified(true);
 	}
@@ -133,15 +127,15 @@ public class LogInController implements Initializable {
 			LaunchApp.getStage().hide();
 			userEmailField.setText("");
 			userPasswordField.setText("");
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DOCTOR_MENU_VIEW));
-			Parent root = (Parent) loader.load();
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DOCTOR_MENU_VIEW));
+			Parent root = loader.load();
 			Stage stage = new Stage();
 			Scene scene = new Scene(root);
 			scene.setFill(Color.TRANSPARENT);
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.setScene(scene);
 			stage.setTitle("Telelepsia Hospitals Menu");
-			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
+			stage.getIcons().add(new Image(APP_ICON));
 			
 			 mainMenu = stage;
 			
@@ -149,9 +143,7 @@ public class LogInController implements Initializable {
 			moveWindow(root,  mainMenu);
 			
 			mainMenu.show();
-			mainMenu.setOnHiding(event -> {
-				logInButton.setDisable(false);
-			});
+			mainMenu.setOnHiding(event -> logInButton.setDisable(false));
 		} catch (IOException error) {
 			error.printStackTrace();
 		}
@@ -159,10 +151,10 @@ public class LogInController implements Initializable {
 
 	private void openDialog(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(DoctorParams.DIALOG_POP_UP_VIEW));
-			Parent root = (Parent) loader.load();
-			DialogPopUpController controler = loader.getController();
-			controler.setMessage(message);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(DIALOG_POP_UP_VIEW));
+			Parent root = loader.load();
+			DialogPopUpController controller = loader.getController();
+			controller.setMessage(message);
 			Stage stage = new Stage();
 			stage.setHeight(130);
 			stage.setWidth(300);
@@ -172,9 +164,9 @@ public class LogInController implements Initializable {
 			stage.initStyle(StageStyle.TRANSPARENT);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("Telelepsia Message");
-			stage.getIcons().add(new Image(DoctorParams.APP_ICON));
+			stage.getIcons().add(new Image(APP_ICON));
 			
-			// Set the pop up in the center of the login window
+			// Set the pop-up in the center of the login window
 			stage.setX(LaunchApp.getStage().getX() + LaunchApp.getStage().getWidth() / 2 - stage.getWidth() / 2);
 			stage.setY(-50 + LaunchApp.getStage().getY() + LaunchApp.getStage().getHeight() / 2 - stage.getHeight() / 2);
 			
@@ -191,10 +183,10 @@ public class LogInController implements Initializable {
 
 	private void loginUserRest(String userEmail, String userPassword) {
 
-		Thread threadObject = new Thread("AthentificatingUser") {
+		Thread threadObject = new Thread("AuthenticatingUser") {
 			public void run() {
 				try {
-					HttpURLConnection connection = (HttpURLConnection) new URL(DoctorParams.BASE_URL + "/doctorLogIn")
+					HttpURLConnection connection = (HttpURLConnection) new URL(BASE_URL + "/doctorLogIn")
 							.openConnection();
 
 					connection.setRequestMethod("POST");
@@ -202,7 +194,7 @@ public class LogInController implements Initializable {
 					APIRequest requestAPI = new APIRequest();
 					if(!userEmail.equals("")) {requestAPI.setUserEmail(userEmail);}
 					if(!userPassword.equals("")) {requestAPI.setUserPassword(userPassword);}
-					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), "UTF-8");
+					String postData = "APIRequest=" + URLEncoder.encode(new Gson().toJson(requestAPI), StandardCharsets.UTF_8);
 					
 					connection.setDoOutput(true);
 					OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
@@ -211,7 +203,7 @@ public class LogInController implements Initializable {
 
 					BufferedReader inputReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 					String inputLine;
-					StringBuffer response = new StringBuffer();
+					StringBuilder response = new StringBuilder();
 					while ((inputLine = inputReader.readLine()) != null) {
 						response.append(inputLine);
 					}
@@ -221,28 +213,17 @@ public class LogInController implements Initializable {
 					APIResponse responseAPI = gsonConverter.fromJson(response.toString(), APIResponse.class);
 
 					if (responseAPI.isError()) {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								openDialog(responseAPI.getAPImessage());
-							}
-						});
+						Platform.runLater(() -> openDialog(responseAPI.getAPImessage()));
 					} else {
-						Platform.runLater(new Runnable() {
-							@Override
-							public void run() {
-								AccountObjectCommunication.setDoctor(responseAPI.getDoctor());
-								launchMenu();
-							}
+						Platform.runLater(() -> {
+							AccountObjectCommunication.setDoctor(responseAPI.getDoctor());
+							launchMenu();
 						});
 					}
-				} catch (ConnectException | FileNotFoundException conncetionError) {
-					Platform.runLater(new Runnable() {
-						@Override
-						public void run() {
-							conncetionError.printStackTrace();
-							openDialog("Failed to connect to the server");
-						}
+				} catch (ConnectException | FileNotFoundException connectionError) {
+					Platform.runLater(() -> {
+						connectionError.printStackTrace();
+						openDialog("Failed to connect to the server");
 					});
 				} catch (IOException error) {
 					error.printStackTrace();
@@ -254,28 +235,17 @@ public class LogInController implements Initializable {
 	
 	public void moveWindow(Parent root, Stage stage) {
 		
-		root.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				xOffset = event.getSceneX();
-				yOffset = event.getSceneY();
-			}
+		root.setOnMousePressed(event -> {
+			xOffset = event.getSceneX();
+			yOffset = event.getSceneY();
 		});
 		
-		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				stage.setOpacity(0.8);
-				stage.setX(event.getScreenX() - xOffset);
-				stage.setY(event.getScreenY() - yOffset);
-			}
+		root.setOnMouseDragged(event -> {
+			stage.setOpacity(0.8);
+			stage.setX(event.getScreenX() - xOffset);
+			stage.setY(event.getScreenY() - yOffset);
 		});
 		
-		root.setOnMouseReleased(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				stage.setOpacity(1);
-			}
-		});
+		root.setOnMouseReleased(event -> stage.setOpacity(1));
 	}
 }
