@@ -27,5 +27,8 @@ hs_err_pid*
 # Ignore .settings file and bin folder
 /.settings
 bin/
+
+# Ignore target and test folder
 /target/
 /test/
+/.idea/
